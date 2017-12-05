@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/','/macOS');
+Route::get('/macOS','OSViewController@macOS')->name('macOS');
