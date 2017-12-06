@@ -1,0 +1,24 @@
+.bg-grd-sm-grey{
+	background: linear-gradient(config('colors.grey'),lighten(#9babb4,5%));
+}
+.backdrop-blur-10{
+	backdrop-filter: blur(10px);
+}
+.backdrop-blur-20{
+	backdrop-filter: blur(20px);
+}
+.backdrop-blur-30{
+	backdrop-filter: blur(30px);
+}
+.backdrop-blur-40{
+	backdrop-filter: blur(40px);
+}
+.backdrop-blur-50{
+	backdrop-filter: blur(50px);
+}
+.backdrop-blur-75{
+	backdrop-filter: blur(75px);
+}
+.backdrop-blur-100{
+	backdrop-filter: blur(100px);
+}

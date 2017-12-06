@@ -20,9 +20,9 @@ return [
 	'Reminders' => 'Herinneringen',
 	'Agenda' => 'Agenda',
 	'Contacts' => 'Contacten',
-	'Sticky_Notes' => 'Plaknotities',
+	'Sticky Notes' => 'Plaknotities',
 	'Terminal' => 'Terminal',
 	'Trash' => 'Trash',
 
-	
+
 ];

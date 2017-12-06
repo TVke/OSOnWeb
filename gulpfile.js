@@ -1,28 +1,53 @@
 'use strict';
 const gulp = require('gulp');
 const sass = require('gulp-sass');
-const autoprefixer = require('gulp-autoprefixer');
+// const autoprefixer = require('gulp-autoprefixer');
 const pump = require('pump');
 const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
+const postcss = require('gulp-postcss');
+const tailwindcss = require('tailwindcss');
+const purgecss = require('gulp-purgecss');
 
-gulp.task('default', ['sass','js','image','favicons']);
-gulp.task('watch', ['sass:watch','js:watch']);
+gulp.task('default', ['css','js','image','favicons']);
+gulp.task('watch', ['css:watch','js:watch']);
 
 /*
  *
- * SASS
+ * SASS, tailwind, postCSS
  *
  */
-gulp.task('sass', function () {
+
+gulp.task('css',function(){
 	return gulp.src('resources/assets/scss/*.scss')
 		.pipe(sass().on('error', sass.logError))
-		.pipe(autoprefixer())
+		.pipe(postcss([
+			tailwindcss('./tailwind.js'),
+			require('autoprefixer')
+		]))
 		.pipe(gulp.dest('public/css'));
 });
-gulp.task('sass:watch', function () {
-	gulp.watch('resources/assets/scss/*.scss', ['sass']);
+gulp.task('css:watch', function () {
+	gulp.watch('resources/assets/scss/*.scss', ['css']);
 });
+
+// /*
+//  *
+//  * purgeCSS
+//  *
+//  */
+//
+// gulp.task('purge',function(){
+// 	return gulp.src('public/css/*.css')
+// 		.pipe(sass().on('error', sass.logError))
+// 		.pipe(purgecss({
+// 			content: ['']
+// 		}))
+// 		.pipe(gulp.dest('public/css'));
+// });
+// gulp.task('css:watch', function () {
+// 	gulp.watch('resources/assets/scss/*.scss', ['css']);
+// });
 
 /*
  *

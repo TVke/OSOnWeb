@@ -11,11 +11,15 @@
   "license": "ISC",
   "homepage": "http://os.local",
   "devDependencies": {
-      "gulp": "^3.9.1",
-      "gulp-autoprefixer": "^4.0.0",
-      "gulp-imagemin": "^3.2.0",
-      "gulp-sass": "^3.1.0",
-      "gulp-uglify": "^3.0.0",
-      "pump": "^1.0.2"
+    "autoprefixer": "^7.2.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-purgecss": "^0.13.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "pump": "^1.0.2",
+    "tailwindcss": "^0.3.0"
   }
 }

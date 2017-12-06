@@ -1,0 +1,20 @@
+.dock{
+	transition: all .5s ease;
+}
+.dock-hide{
+	transform: translateY(100px);
+}
+
+.dock::after{
+	content: "";
+	border-color: rgba(27, 27, 27, 0.7);
+	box-shadow: 0 1px 112px rgba(0, 0, 0, 0.5);
+	@apply .rounded-t .absolute .pin .border .border-b-0 .backdrop-blur-30
+}
+.dock>*{
+	@apply .z-10 .relative
+}
+.bg-desktop{
+	background: #919191 url("/img/High%20Sierra.jpg");
+	@apply .bg-cover .bg-no-repeat .h-screen
+}

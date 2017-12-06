@@ -1,8 +1,8 @@
 @extends('layout')
 @section('title','macOS')
 @section('content')
-	<nav class="dock">
-		<ul>
+	<nav class="absolute pin-b w-full flex">
+		<ul class="list-reset flex mx-auto p-4 dock relative">
 			<li>
 				<figure>
 					<figcaption>{{ __('macOS.Finder') }}</figcaption>
@@ -53,8 +53,8 @@
 			</li>
 			<li>
 				<figure>
-					<figcaption>{{ __('macOS.Sticky_Notes') }}</figcaption>
-					<img src="{{ asset('img/Sticky Notes.png') }}" alt="{{ __('macOS.Sticky_Notes') }}">
+					<figcaption>{{ __('macOS.Sticky Notes') }}</figcaption>
+					<img src="{{ asset('img/Sticky Notes.png') }}" alt="{{ __('macOS.Sticky Notes') }}">
 				</figure>
 			</li>
 			<li>
