@@ -34,12 +34,12 @@ gulp.task('css:watch', function () {
 	gulp.watch('resources/assets/scss/*.scss', ['css']);
 });
 
-// /*
-//  *
-//  * purgeCSS
-//  *
-//  */
-//
+/*
+ *
+ * purgeCSS
+ *
+ */
+
 // gulp.task('purge',function(){
 // 	return gulp.src('public/css/*.css')
 // 		.pipe(sass().on('error', sass.logError))
