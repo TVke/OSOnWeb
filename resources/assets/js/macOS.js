@@ -2,84 +2,82 @@
 
 }(window);
 
-
-    var Observable = function() {
-        var _self = this;
-        _self.prototype.data;
-        _self.prototype.subs = [];
-        _self.prototype.methods = {
+    const Observable = function() {
+        const _self = this;
+        _self.data;
+        _self.subs = [];
+        _self.methods = {
             publish: function (newData) {
                 if (typeof newData !== 'undefined') {
-                    _self.prototype.data = newData;
-                    for (var i = 0, ilen = _self.prototype.subs.length; i < ilen; ++i) {
-                        _self.prototype.subs[i](_self.prototype.data);
+                    _self.data = newData;
+                    for (let i = 0, ilen = _self.subs.length; i < ilen; ++i) {
+                        _self.subs[i](_self.data);
                     }
                 } else {
-                    return _self.prototype.data;
+                    return _self.data;
                 }
             },
             subscribe: function (callback) {
-                if (_self.subs.prototype.indexOf(callback) === -1) {
-                    _self.subs.prototype.push(callback);
+                if (_self.subs.indexOf(callback) === -1) {
+                    _self.subs.push(callback);
                 }
-            }//,
-            // unsubscribe: function (callback) {
-            //     if (_self.subs.prototype.indexOf(callback) === -1) {
-            //         _self.subs.prototype.splice(callback);
-            //     }
-            // }
+            }
         };
-        return _self.prototype.methods;
+        return _self.methods;
     };
 
-    var view = {
-        startButton: document.querySelector("body")
+    const view = {
+        dockAppsLabels: document.querySelectorAll("body"),
+        dockAppsImages: document.querySelectorAll(""),
     };
-    var model = {
-        showInfoTime: new Observable()
-    };
-    var gameController = {
-        skipTurn: function () {
+    const model = {
+        dockApps: [],
 
-        }
     };
-    var gameSetup = {
+    const subscribeController = {
+        initial: function () {
+
+        },
+    };
+    const gameSetup = {
         pawns: function () {
 
-        }
+        },
     };
-// eerst aangeroepen functie
+
+    // eerst aangeroepen functie
     !function(){
-        gameSetup.goose();
-        gameSetup.dice(2);
-        gameSetup.singleObservables();
-
-        gameView.playerAmount.addEventListener("change", function () {
-            // inputs hidden zetten als iets veranderd aan select
-            for (let i = 0, ilen = gameView.playerInput.length; i < ilen; ++i) {
-                gameView.playerInput[i].setAttribute("class", "hidden");
-            }
-            var playerAmount = gameView.playerAmount.value;
-            for (let i = 0; i < playerAmount; ++i) {
-                gameView.playerInput[i].removeAttribute("class");
-            }
-        });
-
-        gameView.startButton.addEventListener("click", function () {
-            var playerAmount = gameView.playerAmount.value;
-            var playerNames = [];
-            for (let i = 0; i < playerAmount; ++i) {
-                if (gameView.playerInput[i].value !== "") {
-                    playerNames.push(gameView.playerInput[i].value);
-                    gameView.playerButtons[i].setAttribute("aria-label",gameView.playerInput[i].value + " Dobbel");
-                } else {
-                    playerNames.push("Speler " + (i + 1));
-                    gameView.playerButtons[i].setAttribute("aria-label","Speler " + (i + 1) + " Dobbel");
-                }
-            }
-            gameSetup.players(playerAmount, playerNames);
-            gameSetup.pawns(playerAmount);
-            gameView.overlay.setAttribute("class", "hidden");
-            gameView.beginOverlay.setAttribute("class", "hidden");
-        });
+        subscribeController.initial();
+        // gameSetup.goose();
+        // gameSetup.dice(2);
+        // gameSetup.singleObservables();
+        //
+        // gameView.playerAmount.addEventListener("change", function () {
+        //     // inputs hidden zetten als iets veranderd aan select
+        //     for (let i = 0, ilen = gameView.playerInput.length; i < ilen; ++i) {
+        //         gameView.playerInput[i].setAttribute("class", "hidden");
+        //     }
+        //     var playerAmount = gameView.playerAmount.value;
+        //     for (let i = 0; i < playerAmount; ++i) {
+        //         gameView.playerInput[i].removeAttribute("class");
+        //     }
+        // });
+        //
+        // gameView.startButton.addEventListener("click", function () {
+        //     var playerAmount = gameView.playerAmount.value;
+        //     var playerNames = [];
+        //     for (let i = 0; i < playerAmount; ++i) {
+        //         if (gameView.playerInput[i].value !== "") {
+        //             playerNames.push(gameView.playerInput[i].value);
+        //             gameView.playerButtons[i].setAttribute("aria-label",gameView.playerInput[i].value + " Dobbel");
+        //         } else {
+        //             playerNames.push("Speler " + (i + 1));
+        //             gameView.playerButtons[i].setAttribute("aria-label","Speler " + (i + 1) + " Dobbel");
+        //         }
+        //     }
+        //     gameSetup.players(playerAmount, playerNames);
+        //     gameSetup.pawns(playerAmount);
+        //     gameView.overlay.setAttribute("class", "hidden");
+        //     gameView.beginOverlay.setAttribute("class", "hidden");
+        // });
     }();

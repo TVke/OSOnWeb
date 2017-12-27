@@ -8,6 +8,8 @@ const imagemin = require('gulp-imagemin');
 const postcss = require('gulp-postcss');
 const tailwindcss = require('tailwindcss');
 const purgecss = require('gulp-purgecss');
+const babel = require("gulp-babel");
+
 
 gulp.task('default', ['css','js','image','favicons']);
 gulp.task('watch', ['css:watch','js:watch']);
@@ -58,12 +60,10 @@ gulp.task('css:watch', function () {
  *
  */
 
-gulp.task('js', function (cb) {
-	pump([
-		gulp.src('resources/assets/js/*.js'),
-		uglify(),
-		gulp.dest('public/js')
-	],cb);
+gulp.task('js', function () {
+    return gulp.src("resources/assets/js/*.js")
+        .pipe(babel())
+        .pipe(gulp.dest("public/js"));
 });
 gulp.task('js:watch', function () {
 	gulp.watch('resources/assets/js/*.js', ['js']);
