@@ -1,8 +1,6 @@
 'use strict';
 const gulp = require('gulp');
 const sass = require('gulp-sass');
-// const autoprefixer = require('gulp-autoprefixer');
-const pump = require('pump');
 const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 const postcss = require('gulp-postcss');
@@ -63,6 +61,7 @@ gulp.task('css:watch', function () {
 gulp.task('js', function () {
     return gulp.src("resources/assets/js/*.js")
         .pipe(babel())
+        .pipe(uglify())
         .pipe(gulp.dest("public/js"));
 });
 gulp.task('js:watch', function () {
