@@ -27,18 +27,21 @@
     };
 
     const view = {
-        dockAppsLabels: document.querySelectorAll("body"),
-        dockAppsImages: document.querySelectorAll(""),
+        dockAppsLabels: document.querySelectorAll("ul.dock figcaption"),
+        dockAppsImages: document.querySelectorAll("ul.dock img"),
     };
     const model = {
         dockApps: [],
 
     };
-    const subscribeController = {
-        initial: function () {
+const subscribeController = {
+    initial: function () {
+        this.modelFiller(model.dockApps);
+    },
+    modelFiller: function (model) {
 
-        },
-    };
+    }
+};
     const gameSetup = {
         pawns: function () {
 

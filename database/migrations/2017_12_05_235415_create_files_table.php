@@ -15,7 +15,20 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('file');
+            $table->integer('dock_order')->nullable()->default(null);
+            $table->unsignedInteger('type_id');
+            $table->unsignedInteger('dir_id');
             $table->timestamps();
+
+            $table->foreign('type_id')
+                ->references('id')->on('file_types')
+                ->onDelete('cascade');
+
+            $table->foreign('dir_id')
+                ->references('id')->on('directories')
+                ->onDelete('cascade');
         });
     }
 
@@ -26,6 +39,10 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
+        Schema::table('files', function (Blueprint $table) {
+            $table->dropForeign(['type_id']);
+            $table->dropForeign(['dir_id']);
+        });
         Schema::dropIfExists('files');
     }
 }

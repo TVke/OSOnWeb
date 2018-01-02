@@ -53,8 +53,8 @@ var colors = {
   'grey': '#9babb4',
   'grey-light': '#dae4e9',
   'grey-lighter': '#f3f7f9',
-  'grey-lightest': '#fafcfc',
-  'white': '#ffffff',
+  'grey-lightest': '#f0f0f0',
+  'white': '#fff',
 
   'red-darkest': '#420806',
   'red-darker': '#6a1b19',
@@ -449,6 +449,7 @@ module.exports = {
   width: {
     'auto': 'auto',
     'px': '1px',
+    '0': '0',
     '1': '0.25rem',
     '2': '0.5rem',
     '3': '0.75rem',
@@ -496,6 +497,7 @@ module.exports = {
   height: {
     'auto': 'auto',
     'px': '1px',
+    '0': '0',
     '1': '0.25rem',
     '2': '0.5rem',
     '3': '0.75rem',
@@ -506,6 +508,7 @@ module.exports = {
     '12': '3rem',
     '16': '4rem',
     '24': '6rem',
+    '28': '7rem',
     '32': '8rem',
     '48': '12rem',
     '64': '16rem',

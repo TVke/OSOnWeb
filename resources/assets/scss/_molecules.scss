@@ -1,6 +1,8 @@
 .dock{
 	transition: all .5s ease;
+    padding: 2px 5px;
 }
+
 .dock-hide{
 	transform: translateY(100px);
 }
@@ -12,9 +14,18 @@
     background: rgba(240,240,240,0.2);
 	@apply .rounded-t .absolute .pin .border .border-b-0 .backdrop-blur-30
 }
-.dock>*{
-	@apply .z-10 .relative
+
+.dock figcaption{
+    top: -30px;
 }
+
+.arrow{
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid rgb(240,240,240);
+    top: -4px;
+}
+
 .bg-desktop{
 	background: #919191 url("/img/High%20Sierra.jpg");
 	@apply .bg-cover .bg-no-repeat .h-screen

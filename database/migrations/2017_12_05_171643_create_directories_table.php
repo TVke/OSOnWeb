@@ -16,6 +16,8 @@ class CreateDirectoriesTable extends Migration
         Schema::create('directories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('visual');
+            $table->integer('dock_order')->nullable()->default(null);
             $table->unsignedInteger('topDir')->nullable()->default(4);
             $table->timestamps();
 
