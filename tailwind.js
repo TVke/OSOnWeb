@@ -47,8 +47,8 @@ var colors = {
   'transparent': 'transparent',
 
   'black': '#222b2f',
-  'grey-darkest': '#364349',
-  'grey-darker': '#596a73',
+  'grey-darkest': '#333',
+  'grey-darker': '#717171',
   'grey-dark': '#70818a',
   'grey': '#9babb4',
   'grey-light': '#dae4e9',
@@ -710,6 +710,7 @@ module.exports = {
     'md': '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
     'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
     'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
+    'inner-sm': 'inset 0 1px 0 0 rgba(0,0,0,0.06)',
     'none': 'none',
   },
 

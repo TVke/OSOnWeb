@@ -24,5 +24,9 @@ return [
 	'Terminal' => 'Terminal',
 	'Trash' => 'Prullenmand',
 
+    // general
+    'open' => 'Open',
+    'new' => 'Nieuw venster',
+    'quit' => 'Stop',
 
 ];

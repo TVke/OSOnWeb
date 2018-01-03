@@ -1,6 +1,6 @@
-.dock{
+nav ul.dock{
 	transition: all .5s ease;
-    padding: 2px 5px;
+    padding: 5px 8px;
 }
 
 .dock-hide{
@@ -16,14 +16,47 @@
 }
 
 .dock figcaption{
-    top: -30px;
+    transition: all .3s ease-out;
+    opacity: 0;
+    top: -41px;
+}
+
+.dock .vr{
+    background: rgba(50,50,50,0.8);
+}
+
+.dock li.hover figcaption,.dock li.hover figure .arrow{
+    opacity: 1;
+}
+.dock li.click img{
+    filter: brightness(0.5);
+}
+.dock li::after{
+    content: "";
+    top: 5px;
+    transition: all .3s ease-out;
+    @apply .rounded .block .w-1 .h-1 .mx-auto .relative .z-10 .bg-grey-darkest .shadow-inner-sm .opacity-0
+}
+.dock li.active::after{
+    @apply .opacity-100
+}
+
+.dock li.options menu, .dock li.options .arrow{
+    opacity: 1;
+}
+
+.dock menu{
+    top: -53px;
+    left: 30px;
+    transition: all .3s ease-out;
 }
 
 .arrow{
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
     border-top: 7px solid rgb(240,240,240);
-    top: -4px;
+    top: -20px;
+    transition: all .3s ease-out;
 }
 
 .bg-desktop{
