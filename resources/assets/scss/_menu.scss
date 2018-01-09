@@ -1,0 +1,10 @@
+.top-menu{
+    background: rgba(250,250,250,.7);
+    border-color: rgba(0, 0, 0, 0.3);
+}
+.top-menu .hover{
+    @apply .bg-blue
+}
+.top-menu .hover{
+    @apply .text-white
+}

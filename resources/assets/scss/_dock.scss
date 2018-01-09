@@ -25,9 +25,6 @@ nav ul.dock{
     background: rgba(50,50,50,0.8);
 }
 
-.dock li.hover figcaption,.dock li.hover figure .arrow{
-    opacity: 1;
-}
 .dock li.click img,.dock li.options img{
     filter: brightness(0.5);
 }
@@ -37,18 +34,49 @@ nav ul.dock{
     transition: all .3s ease-out;
     @apply .rounded .block .w-1 .h-1 .mx-auto .relative .z-10 .bg-grey-darkest .shadow-inner-sm .opacity-0
 }
-.dock li.active::after{
-    @apply .opacity-100
-}
 
-.dock li.options .menu, .dock li.options .arrow{
-    opacity: 1;
+.dock li.active::after,
+.dock li.hover figcaption,
+.dock li.hover figure .arrow,
+.dock li.options .menu,
+.dock li.options .arrow{
+    @apply .opacity-100
 }
 
 .dock .menu{
     bottom: 122px;
     left: 30px;
     transition: all .3s ease-out;
+}
+
+.dock .menu p{
+    white-space: nowrap;
+}
+.dock .menu p.sub-menu{
+    display: flex;
+}
+.dock .menu p.sub-menu::after{
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 9px solid #434343;
+    margin-top: 2px;
+    @apply .ml-3 .-mr-2
+}
+.dock .menu p.hover{
+    @apply .bg-blue .text-white
+}
+.dock .menu p.hover.sub-menu::after{
+    border-left-color: white;
+}
+
+.dock .menu hr{
+    height: 2px;
+    margin: 2px 0;
+    @apply .block .bg-grey-light
 }
 
 .arrow{
@@ -59,7 +87,6 @@ nav ul.dock{
     transition: all .3s ease-out;
 }
 
-.bg-desktop{
+body{
 	background: #919191 url("/img/High%20Sierra.jpg");
-	@apply .bg-cover .bg-no-repeat .h-screen
 }

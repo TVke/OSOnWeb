@@ -26,7 +26,19 @@ return [
 
     // general
     'open' => 'Open',
-    'new' => 'Nieuw venster',
+    'show' => 'Toon',
+    'inside' => 'in',
+    'new' => 'Nieuw',
     'quit' => 'Stop',
+    'options' => 'Opties',
+    'remove' => 'Verwijder uit Dock',
+    'empty' => 'Leeg prullenmand',
+
+    // menu
+    'archive' => 'archief',
+    'edit' => 'wijzig',
+    'view' => 'weergave',
+    'window' => 'venster',
+    'help' => 'help',
 
 ];
