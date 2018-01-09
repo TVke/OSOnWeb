@@ -10,9 +10,9 @@
                         <div class="arrow block w-0 h-0 absolute mx-auto pin-x opacity-0"></div>
                         <img src="{{ asset($app->file) }}" alt="{{ __('macOS.'.$app->name) }}" class="block w-24">
                     </figure>
-                    <menu type="context" class="block absolute rounded font-light text-xs bg-grey-lightest p-0 shadow-lg opacity-0">
-                        <menuitem class="block py-1 px-4 my-px">{{ __('macOS.open') }}</menuitem>
-                    </menu>
+                    <div class="menu block absolute rounded font-light text-xs bg-grey-lightest p-0 shadow-lg opacity-0">
+                        <p class="block py-1 px-4 my-px">{{ __('macOS.open') }}</p>
+                    </div>
                     <div class="arrow block w-0 h-0 absolute mx-auto pin-x opacity-0"></div>
                 </li>
             @endforeach
@@ -24,9 +24,9 @@
                         <div class="arrow block w-0 h-0 absolute mx-auto pin-x opacity-0"></div>
                         <img src="{{ asset($folder->visual) }}" alt="{{ __('macOS.'.$folder->name) }}" class="block w-24">
                     </figure>
-                    <menu type="context" class="block absolute rounded font-light text-xs bg-grey-lightest p-0 shadow-lg opacity-0">
-                        <menuitem class="block py-1 px-4 my-px">{{ __('macOS.open') }}</menuitem>
-                    </menu>
+                    <div class="menu block absolute rounded font-light text-xs bg-grey-lightest p-0 shadow-lg opacity-0">
+                        <p class="block py-1 px-4 my-px">{{ __('macOS.open') }}</p>
+                    </div>
                     <div class="arrow block w-0 h-0 absolute mx-auto pin-x opacity-0"></div>
                 </li>
             @endforeach

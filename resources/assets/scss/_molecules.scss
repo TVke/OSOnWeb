@@ -28,7 +28,7 @@ nav ul.dock{
 .dock li.hover figcaption,.dock li.hover figure .arrow{
     opacity: 1;
 }
-.dock li.click img{
+.dock li.click img,.dock li.options img{
     filter: brightness(0.5);
 }
 .dock li::after{
@@ -41,12 +41,12 @@ nav ul.dock{
     @apply .opacity-100
 }
 
-.dock li.options menu, .dock li.options .arrow{
+.dock li.options .menu, .dock li.options .arrow{
     opacity: 1;
 }
 
-.dock menu{
-    bottom: 110px;
+.dock .menu{
+    bottom: 122px;
     left: 30px;
     transition: all .3s ease-out;
 }
