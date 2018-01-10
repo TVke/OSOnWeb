@@ -95,8 +95,17 @@ const subscribeController = {
                         }
                         break;
                     case "active":
-                        if(!apps[i].classList.contains("active")){
-                            apps[i].classList.add("active");
+                        const startupTimer = setTimeout(function () {
+                            if(apps[i].classList.contains("activate")){
+                                apps[i].classList.remove("activate");
+                            }
+                            if(!apps[i].classList.contains("active")){
+                                apps[i].classList.add("active");
+                            }
+                            clearTimeout(startupTimer);
+                        },1000);
+                        if(!apps[i].classList.contains("activate")){
+                            apps[i].classList.add("activate");
                         }
                         break;
                     case "inactive":
@@ -161,6 +170,7 @@ const listenerController = {
                 apps[index].addEventListener("mouseup",function () {
                     clearTimeout(holdTimer);
                     model.dockApps[index].publish("release");
+                    model.dockApps[index].publish("active");
                 });
                 apps[index].addEventListener("contextmenu",function (e) {
                     e.preventDefault();
