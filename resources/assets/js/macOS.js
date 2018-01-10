@@ -21,6 +21,11 @@ const Observable = function() {
             if (_self.subs.indexOf(callback) === -1) {
                 _self.subs.push(callback);
             }
+        },
+        unsubscribe: function (callback) {
+            if (_self.subs.indexOf(callback) !== -1) {
+                _self.subs.splice(_self.subs.indexOf(callback),1);
+            }
         }
     };
     return _self.methods;
@@ -29,10 +34,13 @@ const Observable = function() {
 const view = {
     dockAppsLabels: document.querySelectorAll("ul.dock figcaption"),
     dockApps: document.querySelectorAll("ul.dock li"),
+    contextMenuItems: document.querySelectorAll("ul.dock li div.menu p"),
 };
 const model = {
     dockApps: [],
-
+    contextMenuItems: [],
+    holdTimer: new Observable(),
+    optionsOpened: new Observable(),
 };
 const layoutController = {
     initial: function () {
@@ -52,60 +60,77 @@ const layoutController = {
 };
 const subscribeController = {
     initial: function () {
+        this.dockMenu();
         this.apps(view.dockApps);
+        this.contextMenus(view.contextMenuItems);
+    },
+    dockMenu: function () {
+        model.optionsOpened.subscribe(function (dockAppIndex) {
+            for(let i = 0, ilen = view.dockApps.length;i < ilen;++i){
+                if (view.dockApps[i].classList.contains("options")) {
+                    view.dockApps[i].classList.remove("options");
+                }
+            }
+            if(dockAppIndex !== null){
+                if(!view.dockApps[dockAppIndex].classList.contains("options")){
+                    view.dockApps[dockAppIndex].classList.add("options");
+                    if(view.dockApps[dockAppIndex].classList.contains("hover")){
+                        view.dockApps[dockAppIndex].classList.remove("hover");
+                    }
+                }
+            }
+        });
+        model.optionsOpened.publish(null);
     },
     apps: function (apps) {
         for(let i = 0, ilen = apps.length;i < ilen;++i){
             let appObservable = new Observable();
             appObservable.subscribe(function (data) {
-                switch (data){
+                switch (data) {
                     case "mouse-over":
-                        let optionsShowing= false;
-                        for(let index = 0, ilen = apps.length;index < ilen;++index){
-                            if(apps[index].classList.contains("options")){
-                                optionsShowing = true;
-                                break;
-                            }
-                        }
-                        if(!optionsShowing && !apps[i].classList.contains("hover")){
+                        if (model.optionsOpened.publish() === null && !apps[i].classList.contains("hover")) {
                             apps[i].classList.add("hover");
                         }
                         break;
                     case "mouse-out":
-                        if(apps[i].classList.contains("hover")){
+                        if (apps[i].classList.contains("hover")) {
                             apps[i].classList.remove("hover");
                         }
                         break;
                     case "click":
-                        if(!apps[i].classList.contains("options")){
-                            for(let index = 0, ilen = apps.length;index < ilen;++index){
-                                if(apps[index].classList.contains("options")){
-                                    apps[index].classList.remove("options");
-                                    break;
-                                }
-                            }
-                        }
-                        if(!apps[i].classList.contains("click")){
+                        model.holdTimer.publish(setTimeout(function () {
+                            model.optionsOpened.publish(i);
+                        },500));
+                        model.optionsOpened.publish(null);
+                        if (!apps[i].classList.contains("click")) {
                             apps[i].classList.add("click");
                         }
                         break;
                     case "release":
-                        if(apps[i].classList.contains("click")){
+                        clearTimeout(model.holdTimer.publish());
+                        if (apps[i].classList.contains("click")) {
                             apps[i].classList.remove("click");
+                        }
+                        if(model.optionsOpened.publish() === null){
+                            model.dockApps[i].publish("active");
                         }
                         break;
                     case "active":
-                        const startupTimer = setTimeout(function () {
-                            if(apps[i].classList.contains("activate")){
-                                apps[i].classList.remove("activate");
+                        if (i !== 1){
+                            if (!apps[i].classList.contains("active") && model.optionsOpened.publish() !== i) {
+                                const startupTimer = setTimeout(function () {
+                                    if (apps[i].classList.contains("activate")) {
+                                        apps[i].classList.remove("activate");
+                                    }
+                                    if (!apps[i].classList.contains("active")) {
+                                        apps[i].classList.add("active");
+                                    }
+                                    clearTimeout(startupTimer);
+                                }, 1000);
+                                if (!apps[i].classList.contains("activate") && i !== 0) {
+                                    apps[i].classList.add("activate");
+                                }
                             }
-                            if(!apps[i].classList.contains("active")){
-                                apps[i].classList.add("active");
-                            }
-                            clearTimeout(startupTimer);
-                        },1000);
-                        if(!apps[i].classList.contains("activate")){
-                            apps[i].classList.add("activate");
                         }
                         break;
                     case "inactive":
@@ -113,25 +138,7 @@ const subscribeController = {
                             apps[i].classList.remove("active");
                         }
                         break;
-                    case "options":
-                        for(let index = 0, ilen = apps.length;index < ilen;++index){
-                            if(apps[index].classList.contains("options")){
-                                apps[index].classList.remove("options");
-                            }
-                        }
-                        if(!apps[i].classList.contains("options")){
-                            apps[i].classList.add("options");
-                            if(apps[i].classList.contains("hover")){
-                                apps[i].classList.remove("hover");
-                            }
-                        }
-                        break;
-                    case "hide-options":
-                        if(apps[i].classList.contains("options")){
-                            apps[i].classList.remove("options");
-                        }
-                        break;
-                        // drag stuff (implement when there is time)
+                    // drag stuff (implement when there is time)
                     // case "drag-start":
                     //     break;
                     // case "drag-release":
@@ -140,45 +147,87 @@ const subscribeController = {
                         console.log("SwitchError in subscribeController.apps");
                         break;
                 }
-                model.dockApps.push(appObservable);
             });
-            appObservable.publish("inactive");
+            model.dockApps.push(appObservable);
+        }
+    },
+    contextMenus: function (menuItems) {
+        for(let i = 0, ilen = menuItems.length;i < ilen;++i){
+            let menuObservable = new Observable();
+            menuObservable.subscribe(function (data) {
+                switch (data) {
+                    case "mouse-over":
+                        if(!menuItems[i].classList.contains("hover")){
+                            menuItems[i].classList.add("hover");
+                        }
+                        break;
+                    case "mouse-out":
+                        if(menuItems[i].classList.contains("hover")){
+                            menuItems[i].classList.add("hover");
+                        }
+                        break;
+                    case "open":
+                        // if (apps[i].classList.contains("hover")) {
+                        //     apps[i].classList.remove("hover");
+                        // }
+                        // break;
+                    case "show":
+                        // if (apps[i].classList.contains("hover")) {
+                        //     apps[i].classList.remove("hover");
+                        // }
+                        // break;
+                    default:
+                        console.log("SwitchError in subscribeController.apps");
+                        break;
+                }
+            });
+            model.contextMenuItems.push(menuObservable);
         }
     },
 };
 const listenerController = {
     initial: function () {
         this.dockListeners(view.dockApps);
+        this.contextMenuListeners(view.contextMenuItems);
     },
     dockListeners: function (apps) {
         for(let i = 0, ilen = apps.length;i < ilen;++i){
-            (function (i) {
-                let index = i,holdTimer;
+            !function (i) {
+                let index = i;
                 apps[index].addEventListener("mouseover",function () {
                     model.dockApps[index].publish("mouse-over");
                 });
                 apps[index].addEventListener("mouseout",function () {
                     model.dockApps[index].publish("mouse-out");
                 });
-
                 apps[index].addEventListener("mousedown",function () {
-                    holdTimer = setTimeout(function () {
-                        model.dockApps[index].publish("options");
-                    },500);
                     model.dockApps[index].publish("click");
                 });
                 apps[index].addEventListener("mouseup",function () {
-                    clearTimeout(holdTimer);
                     model.dockApps[index].publish("release");
-                    model.dockApps[index].publish("active");
                 });
                 apps[index].addEventListener("contextmenu",function (e) {
                     e.preventDefault();
-                    model.dockApps[index].publish("options");
+                    model.optionsOpened.publish(index);
                 });
-            }(i));
+            }(i);
         }
-    }
+    },
+    contextMenuListeners: function (menuItems) {
+        for(let i = 0, ilen = menuItems.length;i < ilen;++i){
+            !function (index) {
+                menuItems[index].addEventListener("mouseover",function () {
+                    model.contextMenuItems[index].publish("mouse-over");
+                });
+                menuItems[index].addEventListener("mouseout",function () {
+                    model.contextMenuItems[index].publish("mouse-out");
+                });
+                menuItems[index].addEventListener("click",function () {
+                    model.contextMenuItems[index].publish(view.contextMenuItems[index].dataset["action"].toLowerCase());
+                });
+            }(i);
+        }
+    },
 };
 
 // eerst aangeroepen functie
@@ -186,7 +235,4 @@ const listenerController = {
     layoutController.initial();
     subscribeController.initial();
     listenerController.initial();
-
-    // making Finder active
-    model.dockApps[0].publish("active");
 }();

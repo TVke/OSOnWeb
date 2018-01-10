@@ -9,7 +9,7 @@ const purgecss = require('gulp-purgecss');
 const babel = require("gulp-babel");
 
 
-gulp.task('default', ['css','js','image','favicons']);
+gulp.task('default', ['css','js','favicons']);
 gulp.task('watch', ['css:watch','js:watch']);
 
 /*

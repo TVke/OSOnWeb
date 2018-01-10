@@ -16,7 +16,7 @@
                 @php
                     setlocale(LC_TIME, app()->getLocale().'_BE');
                 @endphp
-                <p class="my-auto">{{ ucfirst(\Carbon\Carbon::now()->formatLocalized('%a %e %b. %H:%M:%S')) }}</p>
+                <p class="my-auto">{{ ucfirst(\Carbon\Carbon::now()->formatLocalized('%a %e %b.')) }} {{ \Carbon\Carbon::now()->addHour()->formatLocalized('%H:%M:%S') }}</p>
             </li>
         </ul>
     </nav>
@@ -24,7 +24,7 @@
     <nav class="absolute pin-b w-full flex">
 		<ul class="list-reset flex mx-auto dock relative h-28">
             @foreach($apps as $app)
-                <li class="z-10 relative">
+                <li class="z-10 relative{{ ($loop->first)?" active":"" }}">
                     <figure class="relative">
                         <figcaption class="block absolute py-1 px-3 rounded mx-auto text-center bg-grey-lightest text-black shadow font-hairline text-xs">{{ __('macOS.'.$app->name) }}</figcaption>
                         <div class="arrow block w-0 h-0 absolute mx-auto pin-x opacity-0"></div>
@@ -32,13 +32,13 @@
                     </figure>
                     <div class="menu block absolute rounded font-light text-xs bg-grey-lighter pt-px shadow-lg opacity-0">
                         @if($app->name !== "Launchpad")
-                            <p class="block py-0.5 px-4 my-0.75">{{ __('macOS.show') }} {{ __('macOS.inside') }} {{ __('macOS.Finder') }}</p>
+                            <p class="block py-0.5 px-4 my-0.75" data-action="show">{{ __('macOS.show') }} {{ __('macOS.inside') }} {{ __('macOS.Finder') }}</p>
                             <hr>
-                            <p class="block py-0.5 px-4 my-0.75">{{ __('macOS.open') }}</p>
+                            <p class="block py-0.5 px-4 my-0.75" data-action="open">{{ __('macOS.open') }}</p>
                         @else
                             {{--<p class="block py-0.5 px-4 my-0.75">{{ __('macOS.remove') }}</p>--}}
                             {{--<hr>--}}
-                            <p class="block py-0.5 px-4 my-0.75">{{ __('macOS.show') }} {{ __('macOS.Launchpad') }}</p>
+                            <p class="block py-0.5 px-4 my-0.75" data-action="show">{{ __('macOS.show') }} {{ __('macOS.Launchpad') }}</p>
                         @endif
                     </div>
                     <div class="arrow block w-0 h-0 absolute mx-auto pin-x opacity-0"></div>
@@ -54,13 +54,13 @@
                     </figure>
                     <div class="menu block absolute rounded font-light text-xs bg-grey-lighter pt-px shadow-lg opacity-0">
                         @if($folder->name !== "Trash")
-                            <p class="block py-0.5 px-4 my-0.75">{{ __('macOS.show') }} {{ __('macOS.inside') }} {{ __('macOS.Finder') }}</p>
+                            <p class="block py-0.5 px-4 my-0.75" data-action="show">{{ __('macOS.show') }} {{ __('macOS.inside') }} {{ __('macOS.Finder') }}</p>
                             <hr>
                         @endif
-                        <p class="block py-0.5 px-4 my-0.75">{{ __('macOS.open') }}</p>
+                        <p class="block py-0.5 px-4 my-0.75" data-action="open">{{ __('macOS.open') }}</p>
                             @if($folder->name === "Trash")
                                 <hr>
-                                <p class="block py-0.5 px-4 my-0.75">{{ __('macOS.empty') }}</p>
+                                <p class="block py-0.5 px-4 my-0.75" data-action="empty">{{ __('macOS.empty') }}</p>
                             @endif
                     </div>
                     <div class="arrow block w-0 h-0 absolute mx-auto pin-x opacity-0"></div>

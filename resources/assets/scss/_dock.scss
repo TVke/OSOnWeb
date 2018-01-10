@@ -1,7 +1,6 @@
 @keyframes load {
     from{transform: translateY(0);}
-    80%{transform: translateY(-20%);}
-    to{transform: translateY(0);}
+    to{transform: translateY(-20%);}
 }
 
 
@@ -23,7 +22,6 @@ nav ul.dock{
 }
 
 .dock figcaption{
-    transition: all .3s ease-out;
     opacity: 0;
     top: -41px;
 }
@@ -32,7 +30,7 @@ nav ul.dock{
     background: rgba(50,50,50,0.8);
 }
 .dock li.activate{
-    animation: load .5s infinite linear;
+    animation: load .4s infinite alternate cubic-bezier(0,.5,.5,.5);
 }
 .dock li.active{
     transform: translateY(0);
@@ -43,8 +41,11 @@ nav ul.dock{
 .dock li::after{
     content: "";
     top: 5px;
-    transition: all .3s ease-out;
     @apply .rounded .block .w-1 .h-1 .mx-auto .relative .z-10 .bg-grey-darkest .shadow-inner-sm .opacity-0
+}
+
+.dock li,.dock li::after,.dock figcaption,.dock .menu,.arrow{
+    transition: all .3s ease-out;
 }
 
 .dock li.active::after,
@@ -58,7 +59,6 @@ nav ul.dock{
 .dock .menu{
     bottom: 122px;
     left: 30px;
-    transition: all .3s ease-out;
 }
 
 .dock .menu p{
@@ -96,7 +96,6 @@ nav ul.dock{
     border-right: 7px solid transparent;
     border-top: 7px solid rgb(240,240,240);
     top: -20px;
-    transition: all .3s ease-out;
 }
 
 body{
