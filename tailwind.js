@@ -51,6 +51,7 @@ var colors = {
   'grey-darker': '#717171',
   'grey-dark': '#70818a',
   'grey': '#9babb4',
+  'grey-disabled': '#BDBDBD',
   'grey-light': '#E6E6E6',
   'grey-lighter': '#F6F6F6',
   'grey-lightest': '#f0f0f0',

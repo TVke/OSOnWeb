@@ -26,19 +26,23 @@
             @foreach($apps as $app)
                 <li class="z-10 relative{{ ($loop->first)?" active":"" }}">
                     <figure class="relative">
-                        <figcaption class="block absolute py-1 px-3 rounded mx-auto text-center bg-grey-lightest text-black shadow font-hairline text-xs">{{ __('macOS.'.$app->name) }}</figcaption>
+                        <figcaption class="block absolute py-1 px-3 rounded mx-auto text-center bg-grey-lightest text-black shadow font-hairline text-xs pointer-events-none">{{ __('macOS.'.$app->name) }}</figcaption>
                         <div class="arrow block w-0 h-0 absolute mx-auto pin-x opacity-0"></div>
-                        <img src="{{ asset($app->file) }}" alt="{{ __('macOS.'.$app->name) }}" class="block w-24">
+                        <img src="{{ asset($app->preview) }}" alt="{{ __('macOS.'.$app->name) }}" class="block w-24">
                     </figure>
-                    <div class="menu block absolute rounded font-light text-xs bg-grey-lighter pt-px shadow-lg opacity-0">
+                    <div class="menu block absolute rounded font-light text-xs bg-grey-lightest pt-px shadow-lg opacity-0 pointer-events-none">
                         @if($app->name !== "Launchpad")
-                            <p class="block py-0.5 px-4 my-0.75" data-action="show">{{ __('macOS.show') }} {{ __('macOS.inside') }} {{ __('macOS.Finder') }}</p>
+                            <p class="block py-0.5 px-4 my-0.75" data-action="show" data-open="{{ $app->file }}">{{ __('macOS.show') }} {{ __('macOS.inside') }} {{ __('macOS.Finder') }}</p>
                             <hr>
-                            <p class="block py-0.5 px-4 my-0.75" data-action="open">{{ __('macOS.open') }}</p>
+                            <p class="block py-0.5 px-4 my-0.75" data-action="open" data-load="{{ $app->file }}">{{ __('macOS.open') }}</p>
+                        @elseif($app->name === "Finder")
+                            <p class="block py-0.5 px-4 my-0.75" data-action="show" data-open=".">{{ __('macOS.new') }} {{ __('macOS.Finder') }} {{ __('macOS.window') }}</p>
+                            <hr>
+                            <p class="block py-0.5 px-4 my-0.75" data-action="restart">{{ __('macOS.restart') }}</p>
                         @else
                             {{--<p class="block py-0.5 px-4 my-0.75">{{ __('macOS.remove') }}</p>--}}
                             {{--<hr>--}}
-                            <p class="block py-0.5 px-4 my-0.75" data-action="show">{{ __('macOS.show') }} {{ __('macOS.Launchpad') }}</p>
+                            <p class="block py-0.5 px-4 my-0.75" data-action="show" data-load="{{ $app->file }}">{{ __('macOS.show') }} {{ __('macOS.Launchpad') }}</p>
                         @endif
                     </div>
                     <div class="arrow block w-0 h-0 absolute mx-auto pin-x opacity-0"></div>
@@ -48,19 +52,19 @@
             @foreach($folders as $folder)
                 <li class="z-10 relative">
                     <figure class="relative">
-                        <figcaption class="block absolute py-1 px-3 rounded mx-auto text-center bg-grey-lightest text-black shadow font-hairline text-xs">{{ __('macOS.'.$folder->name) }}</figcaption>
+                        <figcaption class="block absolute py-1 px-3 rounded mx-auto text-center bg-grey-lightest text-black shadow font-hairline text-xs pointer-events-none">{{ __('macOS.'.$folder->name) }}</figcaption>
                         <div class="arrow block w-0 h-0 absolute mx-auto pin-x opacity-0"></div>
                         <img src="{{ asset($folder->visual) }}" alt="{{ __('macOS.'.$folder->name) }}" class="block w-24">
                     </figure>
-                    <div class="menu block absolute rounded font-light text-xs bg-grey-lighter pt-px shadow-lg opacity-0">
+                    <div class="menu block absolute rounded font-light text-xs bg-grey-lightest pt-px shadow-lg opacity-0 pointer-events-none">
                         @if($folder->name !== "Trash")
-                            <p class="block py-0.5 px-4 my-0.75" data-action="show">{{ __('macOS.show') }} {{ __('macOS.inside') }} {{ __('macOS.Finder') }}</p>
+                            <p class="block py-0.5 px-4 my-0.75" data-action="show" data-open="{{ $app->file }}">{{ __('macOS.show') }} {{ __('macOS.inside') }} {{ __('macOS.Finder') }}</p>
                             <hr>
                         @endif
-                        <p class="block py-0.5 px-4 my-0.75" data-action="open">{{ __('macOS.open') }}</p>
+                        <p class="block py-0.5 px-4 my-0.75" data-action="open" data-open="{{ $app->file }}">{{ __('macOS.open') }}</p>
                             @if($folder->name === "Trash")
                                 <hr>
-                                <p class="block py-0.5 px-4 my-0.75" data-action="empty">{{ __('macOS.empty') }}</p>
+                                <p class="block py-0.5 px-4 my-0.75 disabled" data-action="empty">{{ __('macOS.empty') }}</p>
                             @endif
                     </div>
                     <div class="arrow block w-0 h-0 absolute mx-auto pin-x opacity-0"></div>

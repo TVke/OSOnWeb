@@ -60,8 +60,11 @@ nav ul.dock{
     bottom: 122px;
     left: 30px;
 }
-
+.dock li.options .menu{
+    @apply .pointer-events-auto
+}
 .dock .menu p{
+    cursor: default;
     white-space: nowrap;
 }
 .dock .menu p.sub-menu{
@@ -83,6 +86,12 @@ nav ul.dock{
 }
 .dock .menu p.hover.sub-menu::after{
     border-left-color: white;
+}
+.dock .menu p.disabled{
+    @apply .text-grey-disabled
+}
+.dock .menu p.disabled.hover{
+    @apply .bg-transparent .text-grey-disabled
 }
 
 .dock .menu hr{

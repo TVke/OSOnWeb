@@ -163,7 +163,7 @@ const subscribeController = {
                         break;
                     case "mouse-out":
                         if(menuItems[i].classList.contains("hover")){
-                            menuItems[i].classList.add("hover");
+                            menuItems[i].classList.remove("hover");
                         }
                         break;
                     case "open":
@@ -194,19 +194,19 @@ const listenerController = {
         for(let i = 0, ilen = apps.length;i < ilen;++i){
             !function (i) {
                 let index = i;
-                apps[index].addEventListener("mouseover",function () {
+                apps[index].children[0].addEventListener("mouseover",function () {
                     model.dockApps[index].publish("mouse-over");
                 });
-                apps[index].addEventListener("mouseout",function () {
+                apps[index].children[0].addEventListener("mouseout",function () {
                     model.dockApps[index].publish("mouse-out");
                 });
-                apps[index].addEventListener("mousedown",function () {
+                apps[index].children[0].addEventListener("mousedown",function () {
                     model.dockApps[index].publish("click");
                 });
-                apps[index].addEventListener("mouseup",function () {
+                apps[index].children[0].addEventListener("mouseup",function () {
                     model.dockApps[index].publish("release");
                 });
-                apps[index].addEventListener("contextmenu",function (e) {
+                apps[index].children[0].addEventListener("contextmenu",function (e) {
                     e.preventDefault();
                     model.optionsOpened.publish(index);
                 });
@@ -215,7 +215,8 @@ const listenerController = {
     },
     contextMenuListeners: function (menuItems) {
         for(let i = 0, ilen = menuItems.length;i < ilen;++i){
-            !function (index) {
+            !function (i) {
+                let index = i;
                 menuItems[index].addEventListener("mouseover",function () {
                     model.contextMenuItems[index].publish("mouse-over");
                 });
