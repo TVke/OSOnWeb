@@ -167,14 +167,10 @@ const subscribeController = {
                         }
                         break;
                     case "open":
-                        // if (apps[i].classList.contains("hover")) {
-                        //     apps[i].classList.remove("hover");
-                        // }
+
                         // break;
                     case "show":
-                        // if (apps[i].classList.contains("hover")) {
-                        //     apps[i].classList.remove("hover");
-                        // }
+
                         // break;
                     default:
                         console.log("SwitchError in subscribeController.apps");

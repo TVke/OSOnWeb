@@ -7,6 +7,7 @@
 nav ul.dock{
 	transition: all .5s ease;
     padding: 5px 8px;
+    @apply .list-reset .flex .mx-auto .relative .h-28
 }
 
 .dock-hide{
@@ -21,13 +22,24 @@ nav ul.dock{
 	@apply .rounded-t .absolute .pin .border .border-b-0 .backdrop-blur-30
 }
 
+.dock li{
+    @apply .z-10 .relative
+}
+.dock .vr{
+    background: rgba(50,50,50,0.8);
+    @apply .relative .z-10 .block .w-px .mx-4 .my-2
+}
+
+.dock figure{
+    @apply .relative
+}
 .dock figcaption{
     opacity: 0;
     top: -41px;
+    @apply .block .absolute .py-1 .px-3 .rounded .mx-auto .text-center .bg-grey-lightest .text-black .shadow .font-hairline .text-xs .pointer-events-none
 }
-
-.dock .vr{
-    background: rgba(50,50,50,0.8);
+.dock figure img{
+    @apply .block .w-24
 }
 .dock li.activate{
     animation: load .4s infinite alternate cubic-bezier(0,.5,.5,.5);
@@ -57,8 +69,9 @@ nav ul.dock{
 }
 
 .dock .menu{
-    bottom: 122px;
+    bottom: 132px;
     left: 30px;
+    @apply .block .absolute .rounded .font-light .text-xs .bg-grey-lightest .pt-px .shadow-lg .opacity-0 .pointer-events-none
 }
 .dock li.options .menu{
     @apply .pointer-events-auto
@@ -66,6 +79,7 @@ nav ul.dock{
 .dock .menu p{
     cursor: default;
     white-space: nowrap;
+    @apply .block .py-0.5 .px-4 .my-0.75
 }
 .dock .menu p.sub-menu{
     display: flex;
@@ -105,6 +119,7 @@ nav ul.dock{
     border-right: 7px solid transparent;
     border-top: 7px solid rgb(240,240,240);
     top: -20px;
+    @apply .block .w-0 .h-0 .absolute .mx-auto .pin-x .opacity-0
 }
 
 body{
