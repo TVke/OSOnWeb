@@ -7,7 +7,8 @@
 nav ul.dock{
 	transition: all .5s ease;
     padding: 5px 8px;
-    @apply .list-reset .flex .mx-auto .relative .h-28
+    list-style: none;
+    @apply .flex .mx-auto .relative .h-28
 }
 
 .dock-hide{
@@ -69,7 +70,7 @@ nav ul.dock{
 }
 
 .dock .menu{
-    bottom: 132px;
+    bottom: 122px;
     left: 30px;
     @apply .block .absolute .rounded .font-light .text-xs .bg-grey-lightest .pt-px .shadow-lg .opacity-0 .pointer-events-none
 }
