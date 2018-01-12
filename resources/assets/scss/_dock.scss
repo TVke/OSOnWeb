@@ -3,12 +3,13 @@
     to{transform: translateY(-20%);}
 }
 
-
-nav ul.dock{
-	transition: all .5s ease;
-    padding: 5px 8px;
-    list-style: none;
-    @apply .flex .mx-auto .relative .h-28
+.dock{
+    transition: all .5s ease;
+    padding: 5px 8px 0;
+    @apply .flex .mx-auto .relative
+}
+.dock ul{
+    @apply .flex .mx-auto .list-reset
 }
 
 .dock-hide{
@@ -20,7 +21,7 @@ nav ul.dock{
 	border-color: rgba(0, 0, 0, 0.2);
 	box-shadow: 0 0 70px rgba(0, 0, 0, 0.14);
     background: rgba(240,240,240,0.2);
-	@apply .rounded-t .absolute .pin .border .border-b-0 .backdrop-blur-30
+	@apply .rounded-t .absolute .pin .border .border-b-0 .backdrop-blur-30 .h-28
 }
 
 .dock li{
@@ -42,10 +43,10 @@ nav ul.dock{
 .dock figure img{
     @apply .block .w-24
 }
-.dock li.activate{
+.dock ul:first-child li.activate{
     animation: load .4s infinite alternate cubic-bezier(0,.5,.5,.5);
 }
-.dock li.active{
+.dock ul:first-child li.active{
     transform: translateY(0);
 }
 .dock li.click img,.dock li.options img{
@@ -61,7 +62,7 @@ nav ul.dock{
     transition: all .3s ease-out;
 }
 
-.dock li.active::after,
+.dock ul:first-child li.active::after,
 .dock li.hover figcaption,
 .dock li.hover figure .arrow,
 .dock li.options .menu,
@@ -70,7 +71,7 @@ nav ul.dock{
 }
 
 .dock .menu{
-    bottom: 122px;
+    bottom: 127px;
     left: 30px;
     @apply .block .absolute .rounded .font-light .text-xs .bg-grey-lightest .pt-px .shadow-lg .opacity-0 .pointer-events-none
 }

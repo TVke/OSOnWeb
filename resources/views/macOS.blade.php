@@ -16,13 +16,14 @@
                 @php
                     setlocale(LC_TIME, app()->getLocale().'_BE');
                 @endphp
-                <p>{{ ucfirst(\Carbon\Carbon::now()->formatLocalized('%a %e %b.')) }} {{ \Carbon\Carbon::now()->addHour()->formatLocalized('%H:%M:%S') }}</p>
+                <p id="clock">{{ \Carbon\Carbon::now()->addHour()->formatLocalized('%a %e %b. %H:%M:%S') }}</p>
             </li>
         </ul>
     </nav>
 
-    <nav class="absolute pin-b w-full flex">
-		<ul class="dock">
+    <nav class="absolute pin-b w-full flex h-28">
+        <div class="dock">
+		<ul>
             @foreach($apps as $app)
                 <li class="{{ ($loop->first)?" active":"" }}">
                     <figure>
@@ -48,7 +49,9 @@
                     <div class="arrow"></div>
                 </li>
             @endforeach
+        </ul>
         <div class="vr"></div>
+        <ul>
             @foreach($folders as $folder)
                 <li>
                     <figure>
@@ -71,5 +74,6 @@
                 </li>
             @endforeach
         </ul>
+        </div>
 	</nav>
 @endsection

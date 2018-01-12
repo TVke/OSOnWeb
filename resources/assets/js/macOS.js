@@ -32,9 +32,11 @@ const Observable = function() {
 };
 
 const view = {
-    dockAppsLabels: document.querySelectorAll("ul.dock figcaption"),
-    dockApps: document.querySelectorAll("ul.dock li"),
-    contextMenuItems: document.querySelectorAll("ul.dock li div.menu p"),
+    language: document.getElementsByTagName("html")[0].getAttribute("lang"),
+    clock: document.getElementById("clock"),
+    dockAppsLabels: document.querySelectorAll(".dock figcaption"),
+    dockApps: document.querySelectorAll(".dock li"),
+    contextMenuItems: document.querySelectorAll(".dock li div.menu p"),
 };
 const model = {
     dockApps: [],
@@ -45,6 +47,7 @@ const model = {
 const layoutController = {
     initial: function () {
         this.correctLabel(view.dockAppsLabels);
+        this.clock();
     },
     correctLabel: function (dockLabels) {
         for(let i = 0,ilen = dockLabels.length;i < ilen; ++i){
@@ -56,6 +59,12 @@ const layoutController = {
                 dockLabels[i].style.right = ((appWidth - labelWidth)/2) + "px";
             }
         }
+    },
+    clock: function () {
+        setInterval(function () {
+            let currentDate = new Date();
+            view.clock.innerHTML = currentDate.toLocaleDateString(view.language + "-BE",{weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'});
+        },1000)
     }
 };
 const subscribeController = {
