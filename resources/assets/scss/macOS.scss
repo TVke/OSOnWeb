@@ -25,6 +25,9 @@
 
 @import "dock";
 @import "menu";
+@import "windows";
+
+@import "apps/Calculator";
 
 /**
  * This injects all of Tailwind's utility classes, generated based on your

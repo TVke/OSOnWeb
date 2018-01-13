@@ -13,16 +13,26 @@
     @apply .justify-end
 }
 .top-menu ul li{
-    @apply .flex .px-2.5
+    @apply .flex .px-2.5 .my-auto
 }
-.top-menu ul li p{
-    @apply .my-auto
-}
+.top-menu ul li img{
+    @apply .block
+    }
 .top-menu ul:first-child li:first-child p{
     @apply .text-lg
 }
 .top-menu ul:first-child li:nth-child(2) p{
     @apply .font-semibold
+}
+
+#spotlight{
+    height: 14.5px;
+}
+#siri{
+    height: 16px;
+}
+#notifications{
+    height: 10px;
 }
 
 .top-menu .hover{

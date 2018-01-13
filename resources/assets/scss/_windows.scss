@@ -1,0 +1,7 @@
+.window{
+    padding-top: 2px;
+    @apply .relative
+}
+.window-buttons{
+    @apply .flex .absolute .pin-l .pin-t .px-4 .py-2
+}

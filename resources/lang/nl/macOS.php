@@ -22,7 +22,12 @@ return [
 	'Contacts' => 'Contacten',
 	'Stickies' => 'Plaknotities',
 	'Terminal' => 'Terminal',
-	'Trash' => 'Prullenmand',
+    'Trash' => 'Prullenmand',
+
+    // menu alts
+    'Spotlight' => 'Spotlight',
+    'Siri' => 'Siri',
+    'Notifications' => 'Berichtgeving',
 
     // general
     'open' => 'Open',
