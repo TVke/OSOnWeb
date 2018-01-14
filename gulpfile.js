@@ -9,8 +9,8 @@ const purgecss = require('gulp-purgecss');
 const babel = require("gulp-babel");
 
 
-gulp.task('default', ['css','js','favicons']);
-gulp.task('watch', ['css:watch','js:watch']);
+gulp.task('default', ['css','js']);
+gulp.task('watch', ['css:watch','js:watch','tailwind:watch']);
 
 /*
  *
@@ -32,6 +32,9 @@ gulp.task('css',function(){
 });
 gulp.task('css:watch', function () {
 	gulp.watch('resources/assets/scss/**/*.scss', ['css']);
+});
+gulp.task('tailwind:watch', function () {
+    gulp.watch('tailwind.js', ['css']);
 });
 
 /*

@@ -22,9 +22,9 @@
 
     --calc-grey: #E0E0E0;
     --calc-grey-darker: #E6E6E6;
-    --calc-grey-darkest: rgba(64,64,64,.7);
+    --calc-grey-darkest: rgba(76,76,76,.6);
     --calc-grey-inner-border: #8E8E8E;
-    --calc-grey-window-border: #5A5A5A;
+    --calc-grey-window-border: rgba(0,0,0,0.40);//#5A5A5A;
     --calc-orange: #F79231;
 }
 
@@ -50,8 +50,8 @@
 .Calculator.window .window-buttons .enlarge:hover::after,.Calculator.window .window-buttons .enlarge:hover::before{
     content: "";
     width: 8px;
-    top:4.7px;
-    left: 1.2px;
+    top:4.8px;
+    left: 1.25px;
     background: var(--calc-green-darker);
     @apply .absolute .block .h-px .border-0
 }
@@ -61,8 +61,8 @@
 
 // app specific style
 .Calculator.window{
-    top: 40px;
-    left: 80px;
+    top: 230px;
+    left: 150px;
     width: 233px;
     border-color: var(--calc-grey-window-border);
 }
@@ -70,7 +70,7 @@
 .Calculator output{
     background: var(--calc-grey-darkest);
     font-family: "San Fransisco",-apple-system,sans-serif;
-    @apply .h-20 .flex .text-right .backdrop-blur-30 .text-white .text-5xl .font-hairline .pt-0 .pb-0.75 .px-4 .flex-row-reverse .items-end
+    @apply .h-20 .flex .text-right .rounded-t .backdrop-blur-30 .text-white .text-5xl .font-hairline .pt-0 .pb-0.75 .px-4 .flex-row-reverse .items-end
 }
 .Calculator .basic-buttons{
     width: 233px;

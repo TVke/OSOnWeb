@@ -9,12 +9,12 @@
     --green-darker: #016400;
     --green-border: #1BAC2C;
 
-    --window-grey-border-light-active: #A8A8A8;
-    --window-grey-border-light-inactive: #A1A1A1;
-    --window-grey-border-middle-active: #7D7D7D;
-    --window-grey-border-middle-inactive: #939393;
-    --window-grey-border-dark-active: #525252;
-    --window-grey-border-dark-inactive: #868686;
+    --window-grey-border-light-active: rgba(0,0,0,0.24);//#A8A8A8;
+    --window-grey-border-light-inactive: rgba(0,0,0,0.27);//#A1A1A1;
+    --window-grey-border-middle-active: rgba(0,0,0,0.44);//#7D7D7D;
+    --window-grey-border-middle-inactive: rgba(0,0,0,0.34);//#939393;
+    --window-grey-border-dark-active: rgba(0,0,0,0.63);//#525252;
+    --window-grey-border-dark-inactive: rgba(0,0,0,0.40);//#868686;
 }
 
 #open-windows{
@@ -25,11 +25,11 @@
     @apply .relative .rounded .shadow-active-window
 }
 .window-buttons{
-    @apply .flex .absolute .pin-l .pin-t .mt-px .mx-0.5 .z-10
+    @apply .flex .absolute .pin-l .pin-t .mt-px .mx-1 .z-10
 }
 .window-buttons>*{
     border: .5px solid grey;
-    @apply .relative .w-3 .block .h-3 .rounded-full .mx-1 .my-0.5 .cursor-default
+    @apply .relative .w-3 .block .h-3 .rounded-full .mx-1 .my-1 .cursor-default
 }
 .window-buttons .close{
     background: var(--red);
@@ -38,8 +38,8 @@
 .window-buttons .close:hover::after,.window-buttons .close:hover::before{
     content: "";
     width: 8px;
-    top: 4.7px;
-    left: 1.2px;
+    bottom: 4.8px;
+    left: 1.25px;
     background: var(--red-darker);
     @apply .absolute .block .h-px
 }
@@ -56,8 +56,8 @@
 .window-buttons .minimize:hover::after{
     content: "";
     width: 8px;
-    top:4.7px;
-    left: 1.2px;
+    top:4.8px;
+    left: 1.25px;
     background: var(--yellow-darker);
     @apply .absolute .block .h-px
 }

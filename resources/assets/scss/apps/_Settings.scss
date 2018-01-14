@@ -1,0 +1,12 @@
+:root{
+    --sett-enlarge-active: rgb(209,209,209);
+    --sett-enlarge-border-active: rgb(176,176,176);
+}
+
+.Settings.window .window-buttons .enlarge{
+    background: var(--sett-enlarge-active);
+    border-color: var(--sett-enlarge-border-active);
+}
+.Settings.window .window-buttons .enlarge:hover::after,.Settings.window .window-buttons .enlarge:hover::before{
+    display: none;
+}

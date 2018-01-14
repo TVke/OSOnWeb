@@ -23,11 +23,25 @@
  * @import "components/forms";
  */
 
+body{
+    background: #919191 url("/img/High%20Sierra.jpg");
+}
+
 @import "dock";
 @import "menu";
 @import "windows";
 
+@import "apps/Agenda";
 @import "apps/Calculator";
+@import "apps/Contacts";
+@import "apps/Finder";
+@import "apps/Launchpad";
+@import "apps/Notes";
+@import "apps/Reminders";
+@import "apps/Settings";
+@import "apps/Stickies";
+@import "apps/Terminal";
+
 
 /**
  * This injects all of Tailwind's utility classes, generated based on your

@@ -49,6 +49,13 @@
                 <button>=</button>
             </div>
         </div>
+        <div class="window Settings activated">
+            <div class="window-buttons">
+                <a href="." class="close"></a>
+                <a href="." class="minimize"></a>
+                <a href="." class="enlarge"></a>
+            </div>
+        </div>
     </div>
 
     <nav class="absolute pin-b w-full flex h-28">
