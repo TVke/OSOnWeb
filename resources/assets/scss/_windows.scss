@@ -1,7 +1,85 @@
+:root {
+    --red: #FF6259;
+    --red-darker: #4D0000;
+    --red-border: #E1463F;
+    --yellow: #FFBE2F;
+    --yellow-darker: #995700;
+    --yellow-border: #DFA023;
+    --green: #2AD043;
+    --green-darker: #016400;
+    --green-border: #1BAC2C;
+
+    --window-grey-border-light-active: #A8A8A8;
+    --window-grey-border-light-inactive: #A1A1A1;
+    --window-grey-border-middle-active: #7D7D7D;
+    --window-grey-border-middle-inactive: #939393;
+    --window-grey-border-dark-active: #525252;
+    --window-grey-border-dark-inactive: #868686;
+}
+
+#open-windows{
+    @apply .absolute .pin
+}
 .window{
-    padding-top: 2px;
-    @apply .relative
+    border: .5px solid var(--window-grey-border-middle-active);
+    @apply .relative .rounded .shadow-active-window
 }
 .window-buttons{
-    @apply .flex .absolute .pin-l .pin-t .px-4 .py-2
+    @apply .flex .absolute .pin-l .pin-t .mt-px .mx-0.5 .z-10
+}
+.window-buttons>*{
+    border: .5px solid grey;
+    @apply .relative .w-3 .block .h-3 .rounded-full .mx-1 .my-0.5 .cursor-default
+}
+.window-buttons .close{
+    background: var(--red);
+    border-color: var(--red-border);
+}
+.window-buttons .close:hover::after,.window-buttons .close:hover::before{
+    content: "";
+    width: 8px;
+    top: 4.7px;
+    left: 1.2px;
+    background: var(--red-darker);
+    @apply .absolute .block .h-px
+}
+.window-buttons .close:hover::after{
+    transform: rotate(45deg);
+}
+.window-buttons .close:hover::before{
+    transform: rotate(-45deg);
+}
+.window-buttons .minimize{
+    background: var(--yellow);
+    border-color: var(--yellow-border);
+}
+.window-buttons .minimize:hover::after{
+    content: "";
+    width: 8px;
+    top:4.7px;
+    left: 1.2px;
+    background: var(--yellow-darker);
+    @apply .absolute .block .h-px
+}
+.window-buttons .enlarge{
+    background: var(--green);
+    border-color: var(--green-border);
+}
+.window-buttons .enlarge:hover::after,.window-buttons .enlarge:hover::before{
+    content: "";
+    @apply .w-0 .h-0 .absolute
+}
+.window-buttons .enlarge:hover::before{
+    border-top: 4.5px solid var(--green-darker);
+    border-left: 4.5px solid transparent;
+    top: 2.5px;
+    left: 4px;
+    border-top-right-radius: .5px;
+}
+.window-buttons .enlarge:hover::after{
+    border-bottom: 4.5px solid var(--green-darker);
+    border-right: 4.5px solid transparent;
+    top: 4px;
+    left:2.5px;
+    border-bottom-left-radius: .5px;
 }

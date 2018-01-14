@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'San Fransisco';
+    src: url('/fonts/SFCompactDisplay-Ultralight.eot');
+    src: url('/fonts/SFCompactDisplay-Ultralight.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/SFCompactDisplay-Ultralight.woff2') format('woff2'),
+    url('/fonts/SFCompactDisplay-Ultralight.woff') format('woff'),
+    url('/fonts/SFCompactDisplay-Ultralight.ttf') format('truetype'),
+    url('/fonts/SFCompactDisplay-Ultralight.svg#.SFCompactDisplay-Ultralight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+:root {
+    --calc-red: #FF5750;
+    --calc-red-darker: #990000;
+    --calc-red-border: #FF5750;
+    --calc-yellow: #FFC12E;
+    --calc-yellow-darker: #995700;
+    --calc-yellow-border: #FFC12E;
+    --calc-green: #29CE42;
+    --calc-green-darker: #016300;
+    --calc-green-border: #29CE42;
+
+    --calc-grey: #E0E0E0;
+    --calc-grey-darker: #E6E6E6;
+    --calc-grey-darkest: rgba(64,64,64,.7);
+    --calc-grey-inner-border: #8E8E8E;
+    --calc-grey-window-border: #5A5A5A;
+    --calc-orange: #F79231;
+}
+
+// custom window buttons
+.Calculator.window .window-buttons .close{
+    background: var(--calc-red);
+    border-color: var(--calc-red-border);
+}
+.Calculator.window .window-buttons .close:hover::after,.Calculator.window .window-buttons .close:hover::before{
+    background: var(--calc-red-darker);
+}
+.Calculator.window .window-buttons .minimize{
+    background: var(--calc-yellow);
+    border-color: var(--calc-yellow-border);
+}
+.Calculator.window .window-buttons .minimize:hover::after{
+    background: var(--calc-yellow-darker);
+}
+.Calculator.window .window-buttons .enlarge{
+    background: var(--calc-green);
+    border-color: var(--calc-green-border);
+}
+.Calculator.window .window-buttons .enlarge:hover::after,.Calculator.window .window-buttons .enlarge:hover::before{
+    content: "";
+    width: 8px;
+    top:4.7px;
+    left: 1.2px;
+    background: var(--calc-green-darker);
+    @apply .absolute .block .h-px .border-0
+}
+.Calculator.window .window-buttons .enlarge:hover::before{
+    transform: rotate(90deg);
+}
+
+// app specific style
+.Calculator.window{
+    top: 40px;
+    left: 80px;
+    width: 233px;
+    border-color: var(--calc-grey-window-border);
+}
+
+.Calculator output{
+    background: var(--calc-grey-darkest);
+    font-family: "San Fransisco",-apple-system,sans-serif;
+    @apply .h-20 .flex .text-right .backdrop-blur-30 .text-white .text-5xl .font-hairline .pt-0 .pb-0.75 .px-4 .flex-row-reverse .items-end
+}
+.Calculator .basic-buttons{
+    width: 233px;
+    @apply .flex .flex-wrap
+}
+.Calculator .basic-buttons button{
+    @apply .w-1/4
+}
+.Calculator .basic-buttons button.zero{
+    @apply .w-1/2
+}

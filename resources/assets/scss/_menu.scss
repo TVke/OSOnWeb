@@ -1,7 +1,7 @@
 .top-menu{
     background: rgba(250,250,250,.7);
     border-color: rgba(0, 0, 0, 0.3);
-    @apply .absolute .pin-x .pin-t .px-2.5 .backdrop-blur-30 .h-5 .shadow-lg .border-b .flex .justify-between .text-sm
+    @apply .absolute .pin-x .pin-t .pl-2.5 .pr-4 .backdrop-blur-30 .h-5 .shadow-lg .border-b .flex .justify-between .text-sm .z-10
 }
 .top-menu ul{
     @apply .list-reset .flex
@@ -13,31 +13,47 @@
     @apply .justify-end
 }
 .top-menu ul li{
-    @apply .flex .px-2.5 .my-auto
+    @apply .flex
 }
-.top-menu ul li img{
+.top-menu ul li a{
+    @apply .flex .px-2.5 .cursor-default .text-black .no-underline .items-center
+}
+.top-menu ul li a img{
     @apply .block
     }
-.top-menu ul:first-child li:first-child p{
+.top-menu ul:first-child li:first-child a{
     @apply .text-lg
 }
-.top-menu ul:first-child li:nth-child(2) p{
+.top-menu ul:first-child li:nth-child(2) a{
     @apply .font-semibold
 }
 
 #spotlight{
+    padding-left: 0.6875rem;
+    @apply .pr-2.5
+}
+#spotlight img{
     height: 14.5px;
 }
 #siri{
+    padding-left: 0.4375rem;
+    padding-right: 0.4375rem;
+}
+#siri img{
     height: 16px;
 }
 #notifications{
+    padding-left: 0.3125rem;
+    padding-right: 0.3125rem;
+}
+#notifications img{
     height: 10px;
+    margin-right: 2px;
 }
 
-.top-menu .hover{
+.top-menu a:hover{
     @apply .bg-blue
 }
-.top-menu .hover{
+.top-menu a:hover{
     @apply .text-white
 }

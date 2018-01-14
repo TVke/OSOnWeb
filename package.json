@@ -1,7 +1,7 @@
 {
-  "name": "name",
+  "name": "OS",
   "version": "1.0.0",
-  "description": "",
+  "description": "this is a proof of concept school project. I try to prove if I can get a website as close to a real OS",
   "main": "gulpfile.js",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   "license": "ISC",
   "homepage": "http://os.local",
   "devDependencies": {
-    "autoprefixer": "^7.2.4",
+    "autoprefixer": "^7.2.5",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "cssnano": "^3.10.0",
@@ -19,13 +19,9 @@
     "gulp-babel": "^7.0.0",
     "gulp-imagemin": "^4.1.0",
     "gulp-postcss": "^7.0.1",
-    "gulp-purgecss": "^0.16.0",
+    "gulp-purgecss": "^0.18.0",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^3.0.0",
     "tailwindcss": "^0.4.0"
-  },
-  "dependencies": {
-    "imageoptim-cli": "^1.15.4",
-    "svgo": "^1.0.3"
   }
 }

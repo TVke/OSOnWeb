@@ -19,7 +19,7 @@ gulp.task('watch', ['css:watch','js:watch']);
  */
 
 gulp.task('css',function(){
-	return gulp.src('resources/assets/scss/*.scss')
+	return gulp.src('resources/assets/scss/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(postcss([
 			tailwindcss('./tailwind.js'),
@@ -31,7 +31,7 @@ gulp.task('css',function(){
 		.pipe(gulp.dest('public/css'));
 });
 gulp.task('css:watch', function () {
-	gulp.watch('resources/assets/scss/*.scss', ['css']);
+	gulp.watch('resources/assets/scss/**/*.scss', ['css']);
 });
 
 /*
@@ -90,7 +90,18 @@ gulp.task('image:watch', function () {
  */
 
 gulp.task('favicons', function () {
-	return gulp.src('resources/assets/favicons/*')
-		.pipe(imagemin({progressive: true}))
-		.pipe(gulp.dest('public'));
+    return gulp.src('resources/assets/favicons/*')
+        .pipe(imagemin({progressive: true}))
+        .pipe(gulp.dest('public'));
+});
+
+/*
+ *
+ * fonts
+ *
+ */
+
+gulp.task('fonts', function () {
+    return gulp.src('resources/assets/fonts/*')
+        .pipe(gulp.dest('public/fonts'));
 });

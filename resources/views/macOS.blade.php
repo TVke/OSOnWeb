@@ -3,30 +3,51 @@
 @section('content')
     <nav class="top-menu">
         <ul>
-            <li><p></p></li>
-            <li><p>{{ ucfirst(__('macOS.Finder')) }}</p></li>
+            <li><a href="."></a></li>
+            <li><a href=".">{{ ucfirst(__('macOS.Finder')) }}</a></li>
         </ul>
         <ul>
             <li>
                 @php
                     setlocale(LC_TIME, app()->getLocale().'_BE');
                 @endphp
-                <p id="clock">{{ \Carbon\Carbon::now()->addHour()->formatLocalized('%a %e %b. %H:%M:%S') }}</p>
+                <a href="." id="clock">{{ \Carbon\Carbon::now()->addHour()->formatLocalized('%a %e %b. %H:%M:%S') }}</a>
             </li>
-            <li><img id="spotlight" src="{{ asset('/img/spotlight.png') }}" alt="{{ __('macOS.Spotlight') }}"></li>
-            <li><img id="siri" src="{{ asset('/img/siri.png') }}" alt="{{ __('macOS.Siri') }}"></li>
-            <li><img id="notifications" src="{{ asset('/img/notifications.png') }}" alt="{{ __('macOS.Notifications') }}"></li>
+            <li><a id="spotlight" href="."><img src="{{ asset('/img/spotlight.png') }}" alt="{{ __('macOS.Spotlight') }}"></a></li>
+            <li><a id="siri" href="."><img src="{{ asset('/img/siri.png') }}" alt="{{ __('macOS.Siri') }}"></a></li>
+            <li><a id="notifications" href="."><img src="{{ asset('/img/notifications.png') }}" alt="{{ __('macOS.Notifications') }}"></a></li>
         </ul>
     </nav>
 
     <div id="open-windows">
         <div class="window activated Calculator">
             <div class="window-buttons">
-                <div class="close"></div>
-                <div class="minimize"></div>
-                <div class="enlarge"></div>
+                <a href="." class="close"></a>
+                <a href="." class="minimize"></a>
+                <a href="." class="enlarge"></a>
             </div>
-
+            <output>0</output>
+            <div class="basic-buttons">
+                <button>AC</button>
+                <button>+⧸- ⁺⧸₋</button>
+                <button>%</button>
+                <button>÷</button>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>x</button>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>-</button>
+                <button>3</button>
+                <button>2</button>
+                <button>1</button>
+                <button>+</button>
+                <button class="zero">0</button>
+                <button>,</button>
+                <button>=</button>
+            </div>
         </div>
     </div>
 
