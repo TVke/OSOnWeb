@@ -34,6 +34,8 @@ const Observable = function() {
 const view = {
     language: document.getElementsByTagName("html")[0].getAttribute("lang"),
     clock: document.getElementById("clock"),
+    movers: document.getElementsByClassName("mover"),
+    windows: document.getElementsByClassName("window"),
     dockAppsLabels: document.querySelectorAll(".dock figcaption"),
     dockApps: document.querySelectorAll(".dock li"),
     contextMenuItems: document.querySelectorAll(".dock li div.menu p"),
@@ -43,6 +45,12 @@ const view = {
 const model = {
     dockApps: [],
     contextMenuItems: [],
+    pressed: [],
+    startX: [],
+    startY: [],
+    x: [],
+    y: [],
+    windows: [],
     holdTimer: new Observable(),
     optionsOpened: new Observable(),
     optionsToggle: new Observable(),
@@ -350,6 +358,9 @@ const windowController = {
         if (!app.classList.contains("active")) {
             app.classList.add("active");
         }
+        this.windowPlacement(view.windows[view.windows.length - 1],130,150);
+        this.moveSubscribers(view.movers);
+        this.moverListeners(view.movers);
         this.closeButtonListen(view.closeButtons);
         model.optionsOpened.publish(null);
         model.optionsToggle.publish(app.getElementsByClassName("menu")[0]);
@@ -393,6 +404,61 @@ const windowController = {
             }
         }
         return windowsOpen;
+    },
+    moverListeners: function (movers) {
+        for(let i = 0, ilen = movers.length;i < ilen;++i) {
+            model.pressed.push(new Observable());
+            model.startX.push(new Observable());
+            model.startY.push(new Observable());
+            !function (i) {
+                movers[i].addEventListener("mousedown",function (e) {
+                    model.pressed[i].publish(true);
+                    model.startX[i].publish(e.x);
+                    model.startY[i].publish(e.y);
+                });
+                movers[i].addEventListener("mousemove",function (e) {
+                    e.preventDefault();
+                    if(model.pressed[i].publish()){
+                        model.x[i].publish(e.x);
+                        model.y[i].publish(e.y);
+                    }
+                });
+                movers[i].addEventListener("mouseup",function (e) {
+                    model.pressed[i].publish(false);
+                    model.startX[i].publish(e.x);
+                    model.startY[i].publish(e.y);
+                });
+                movers[i].addEventListener("mouseout",function (e) {
+                    model.pressed[i].publish(false);
+                    model.startX[i].publish(e.x);
+                    model.startY[i].publish(e.y);
+                });
+            }(i);
+        }
+    },
+    moveSubscribers: function (movers) {
+        for(let i = 0, ilen = movers.length;i < ilen;++i){
+            let xObservable = new Observable();
+            let yObservable = new Observable();
+            xObservable.subscribe(function (data) {
+                let currentLeft = parseInt(view.windows[i].style.left);
+                let movedX = data - model.startX[i].publish();
+                view.windows[i].style.left = (movedX + currentLeft) + "px";
+                model.startX[i].publish(data);
+            });
+            yObservable.subscribe(function (data) {
+                let currentTop = parseInt(view.windows[i].style.top);
+                let movedY = data - model.startY[i].publish();
+                view.windows[i].style.top = (movedY + currentTop) + "px";
+                model.startY[i].publish(data);
+            });
+            model.x.push(xObservable);
+            model.y.push(yObservable);
+        }
+    },
+    windowPlacement: function (WindowElement,x,y) {
+        WindowElement.style.left = x + "px";
+        WindowElement.style.top = y + "px";
     }
 };
 // eerst aangeroepen functie

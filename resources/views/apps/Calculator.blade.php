@@ -4,7 +4,7 @@
         <a href="." class="minimize"></a>
         <a href="." class="enlarge"></a>
     </div>
-    <output>0</output>
+    <output class="mover">0</output>
     <div class="basic-buttons">
         <button class="darker" title="{{ __('Calculator.clear') }}">AC</button>
         <button class="darker" title="{{ __('Calculator.plus-minus') }}"><sup>+</sup>⧸-</button>
