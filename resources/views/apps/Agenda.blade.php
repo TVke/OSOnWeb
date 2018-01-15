@@ -1,4 +1,4 @@
-<div class="window activated Calculator">
+<div class="window activated Agenda">
     <div class="window-buttons">
         <a href="." class="close"></a>
         <a href="." class="minimize"></a>

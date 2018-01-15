@@ -1,0 +1,1 @@
+"use strict";var Terminal=function(){({initial:function(){this.singles(),this.multiple()},singles:function(){},multiple:function(){}}).initial()};Terminal();

@@ -1,7 +1,9 @@
 # OSOnWeb
-## this is a proof of concept school project. I try to prove if I can get a website as close to a real OS
 
-### log
+this is a proof of concept school project.  
+I try to prove if I can get a website as close to a real OS
+
+## log
 1. collecting example images
 2. setting up TailwindCSS
 3. Styling the dock and background
@@ -21,4 +23,9 @@
 17. focusing on app functionality on macOS
 18. styled default windows for reuse
 19. writing temporary HTML and apply CSS to later load when app is activated.
-19. 
+20. loading html and JS when the app is being activated
+21. making presentation to show to teacher
+22. made close button work
+23. trying to connect the window off the app to the app in the dock
+24. 
+25. 

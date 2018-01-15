@@ -21,6 +21,9 @@
     @apply .absolute .pin
 }
 .window{
+    top: 130px;
+    left: 150px;
+    width: 500px;
     border: .5px solid var(--window-grey-border-middle-active);
     @apply .relative .rounded .shadow-active-window
 }

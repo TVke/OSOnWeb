@@ -1,4 +1,4 @@
-const Finder = function() {
+const Settings = function() {
     const view = {
 
     };
@@ -24,5 +24,5 @@ const Finder = function() {
     }();
 };
 !function () {
-    Finder();
+    Settings();
 }();

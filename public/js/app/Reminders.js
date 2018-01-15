@@ -1,0 +1,1 @@
+"use strict";var Reminders=function(){({initial:function(){this.singles(),this.multiple()},singles:function(){},multiple:function(){}}).initial()};Reminders();

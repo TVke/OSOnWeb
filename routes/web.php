@@ -15,4 +15,4 @@ Route::redirect('/','/macOS');
 Route::get('/macOS','OSViewController@macOS')->name('macOS');
 
 Route::get('/macOS/app/{app_name}','AppController@load');
-Route::get('/macOS/app/{app_name}/{path}','AppController@loadWithData');
+Route::get('/macOS/app/{app_name}/{file}','AppController@loadWithData');

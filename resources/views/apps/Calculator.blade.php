@@ -27,4 +27,3 @@
         <button class="editions" title="{{ __('Calculator.equals') }}">=</button>
     </div>
 </div>
-<script src="{{ asset('js/Calculator.js') }}"></script>

@@ -8,7 +8,6 @@ const tailwindcss = require('tailwindcss');
 const purgecss = require('gulp-purgecss');
 const babel = require("gulp-babel");
 
-
 gulp.task('default', ['css','js']);
 gulp.task('watch', ['css:watch','js:watch','tailwind:watch']);
 
