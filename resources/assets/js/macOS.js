@@ -158,17 +158,14 @@ const subscribeController = {
                         }
                         break;
                     case "active":
-                        if (i !== 1){
-                            if (!apps[i].classList.contains("active")) {
-                                appController.open(apps[i]);
-                                if (!apps[i].classList.contains("activate")) {
-                                    apps[i].classList.add("activate");
-                                }
+                        if (!apps[i].classList.contains("active")) {
+                            appController.open(apps[i]);
+                            if (!apps[i].classList.contains("activate") && i !== 1) {
+                                apps[i].classList.add("activate");
                             }
                         }
                         break;
                     case "inactive":
-                        console.log(apps[i]);
                         model.optionsOpened.publish(null);
                         model.optionsToggle.publish(apps[i].children[1]);
                         if(apps[i].classList.contains("active")){
@@ -309,9 +306,12 @@ const appController = {
         };
         htmlRequest.send();
 
-        const JScript = document.createElement("script");
-        JScript.src = "/js" + appLink + ".js";
-        document.body.appendChild(JScript);
+        // load JS once
+        if(document.querySelectorAll("script[src*=" + dockController.getName(dockController.findIndex(app)) + "]").length < 1){
+            const JScript = document.createElement("script");
+            JScript.src = "/js" + appLink + ".js";
+            document.body.appendChild(JScript);
+        }
     },
     file:function (app) {
         const appLink = app.getElementsByClassName("menu")[0].querySelector("p[data-action=show]").dataset.load;
