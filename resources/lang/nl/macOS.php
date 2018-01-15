@@ -35,6 +35,7 @@ return [
     'inside' => 'in',
     'new' => 'Nieuw',
     'quit' => 'Stop',
+    'restart' => 'Start Opnieuw',
     'options' => 'Opties',
     'remove' => 'Verwijder uit Dock',
     'empty' => 'Leeg prullenmand',

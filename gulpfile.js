@@ -62,13 +62,13 @@ gulp.task('tailwind:watch', function () {
  */
 
 gulp.task('js', function () {
-    return gulp.src("resources/assets/js/*.js")
+    return gulp.src("resources/assets/js/**/*.js")
         .pipe(babel())
         .pipe(uglify())
         .pipe(gulp.dest("public/js"));
 });
 gulp.task('js:watch', function () {
-	gulp.watch('resources/assets/js/*.js', ['js']);
+	gulp.watch('resources/assets/js/**/*.js', ['js']);
 });
 
 /*

@@ -19,46 +19,9 @@
         </ul>
     </nav>
 
-    <div id="open-windows">
-        <div class="window activated Calculator">
-            <div class="window-buttons">
-                <a href="." class="close"></a>
-                <a href="." class="minimize"></a>
-                <a href="." class="enlarge"></a>
-            </div>
-            <output>0</output>
-            <div class="basic-buttons">
-                <button>AC</button>
-                <button>+⧸- ⁺⧸₋</button>
-                <button>%</button>
-                <button>÷</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>x</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>-</button>
-                <button>3</button>
-                <button>2</button>
-                <button>1</button>
-                <button>+</button>
-                <button class="zero">0</button>
-                <button>,</button>
-                <button>=</button>
-            </div>
-        </div>
-        <div class="window Settings activated">
-            <div class="window-buttons">
-                <a href="." class="close"></a>
-                <a href="." class="minimize"></a>
-                <a href="." class="enlarge"></a>
-            </div>
-        </div>
-    </div>
+    <div id="open-windows"></div>
 
-    <nav class="absolute pin-b w-full flex h-28">
+    <nav class="absolute pin-b w-full flex h-28 z-50">
         <div class="dock">
 		<ul>
             @foreach($apps as $app)
@@ -69,18 +32,18 @@
                         <img src="{{ asset($app->preview) }}" alt="{{ __('macOS.'.$app->name) }}">
                     </figure>
                     <div class="menu">
-                        @if($app->name !== "Launchpad")
+                        @if($app->name !== "Launchpad" && $app->name !== "Finder" )
                             <p data-action="show" data-open="{{ $app->file }}">{{ __('macOS.show') }} {{ __('macOS.inside') }} {{ __('macOS.Finder') }}</p>
                             <hr>
                             <p data-action="open" data-load="{{ $app->file }}">{{ __('macOS.open') }}</p>
-                        @elseif($app->name === "Finder")
+                        @endif
+                        @if($app->name === "Finder")
                             <p data-action="show" data-open=".">{{ __('macOS.new') }} {{ __('macOS.Finder') }} {{ __('macOS.window') }}</p>
                             <hr>
                             <p data-action="restart">{{ __('macOS.restart') }}</p>
-                        @else
-                            {{--<p>{{ __('macOS.remove') }}</p>--}}
-                            {{--<hr>--}}
-                            <p data-action="show" data-load="{{ $app->file }}">{{ __('macOS.show') }} {{ __('macOS.Launchpad') }}</p>
+                        @endif
+                        @if($app->name === "Launchpad")
+                            <p data-action="open" data-load="{{ $app->file }}">{{ __('macOS.show') }} {{ __('macOS.Launchpad') }}</p>
                         @endif
                     </div>
                     <div class="arrow"></div>

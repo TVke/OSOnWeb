@@ -1,1 +1,1 @@
-"use strict";var Calculator=function(){};
+"use strict";var Calculator=function(){document.getElementsByTagName("output")[0],document.querySelectorAll(".basic-buttons .input"),document.querySelectorAll(".basic-buttons button"),new Observable,new Observable};

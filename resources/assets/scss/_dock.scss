@@ -28,7 +28,7 @@
     @apply .z-10 .relative
 }
 .dock .vr{
-    background: rgba(50,50,50,0.8);
+    background: rgba(50,50,50,0.4);
     @apply .relative .z-10 .block .w-px .mx-4 .my-2
 }
 
@@ -44,7 +44,7 @@
     @apply .block .w-24
 }
 .dock ul:first-child li.activate{
-    animation: load .4s infinite alternate cubic-bezier(0,.5,.5,.5);
+    animation: load .4s infinite alternate cubic-bezier(.2,.5,.5,.5);
 }
 .dock ul:first-child li.active{
     transform: translateY(0);

@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'San Fransisco';
+    font-family: 'San Fransisco output';
     src: url('/fonts/SFCompactDisplay-Ultralight.eot');
     src: url('/fonts/SFCompactDisplay-Ultralight.eot?#iefix') format('embedded-opentype'),
     url('/fonts/SFCompactDisplay-Ultralight.woff2') format('woff2'),
@@ -7,6 +7,17 @@
     url('/fonts/SFCompactDisplay-Ultralight.ttf') format('truetype'),
     url('/fonts/SFCompactDisplay-Ultralight.svg#.SFCompactDisplay-Ultralight') format('svg');
     font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'San Fransisco text';
+    src: url('/fonts/SFCompactDisplay-Thin.eot');
+    src: url('/fonts/SFCompactDisplay-Thin.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/SFCompactDisplay-Thin.woff2') format('woff2'),
+    url('/fonts/SFCompactDisplay-Thin.woff') format('woff'),
+    url('/fonts/SFCompactDisplay-Thin.ttf') format('truetype'),
+    url('/fonts/SFCompactDisplay-Thin.svg#.SFCompactDisplay-Thin') format('svg');
+    font-weight: 100;
     font-style: normal;
 }
 :root {
@@ -21,11 +32,15 @@
     --calc-green-border: #29CE42;
 
     --calc-grey: #E0E0E0;
-    --calc-grey-darker: #E6E6E6;
+    --calc-grey-pressed: #B2B2B2;
+    --calc-grey-darker: #D6D6D6;
+    --calc-grey-darker-pressed: #A9A9A9;
     --calc-grey-darkest: rgba(76,76,76,.6);
     --calc-grey-inner-border: #8E8E8E;
     --calc-grey-window-border: rgba(0,0,0,0.40);//#5A5A5A;
     --calc-orange: #F79231;
+    --calc-orange-text-pressed: #555;
+    --calc-orange-pressed: #C47325;
 }
 
 // custom window buttons
@@ -61,7 +76,7 @@
 
 // app specific style
 .Calculator.window{
-    top: 230px;
+    top: 130px;
     left: 150px;
     width: 233px;
     border-color: var(--calc-grey-window-border);
@@ -69,16 +84,58 @@
 
 .Calculator output{
     background: var(--calc-grey-darkest);
-    font-family: "San Fransisco",-apple-system,sans-serif;
-    @apply .h-20 .flex .text-right .rounded-t .backdrop-blur-30 .text-white .text-5xl .font-hairline .pt-0 .pb-0.75 .px-4 .flex-row-reverse .items-end
+    font-family: "San Fransisco output",-apple-system,sans-serif;
+    border-top-right-radius: 0.2rem;
+    border-top-left-radius: 0.2rem;
+    @apply .h-20 .flex .text-right .backdrop-blur-30 .text-white .text-5xl .font-hairline .pt-0 .pb-0.75 .px-4 .flex-row-reverse .items-end
 }
 .Calculator .basic-buttons{
     width: 233px;
     @apply .flex .flex-wrap
 }
 .Calculator .basic-buttons button{
-    @apply .w-1/4
+    background: var(--calc-grey);
+    font-family: "San Fransisco text",-apple-system,sans-serif;
+    border-color: var(--calc-grey-inner-border);
+    width: calc(25% - 0.3px);
+    @apply .h-12 .border-t .border-r .font-light .text-xl
+}
+.Calculator .basic-buttons button:last-child{
+    border-bottom-right-radius: 0.2rem;
 }
 .Calculator .basic-buttons button.zero{
-    @apply .w-1/2
+    border-bottom-left-radius: 0.2rem;
+    width: calc(50% - .5px);
+    @apply .px-6 .text-left
+}
+.Calculator .basic-buttons button.darker{
+    background: var(--calc-grey-darker);
+    @apply .border-t-0 .text-base .font-light
+}
+.Calculator .basic-buttons button.editions{
+    background: var(--calc-orange);
+    @apply .text-white .border-r-0 .text-3xl .pb-1 .font-thin .w-1/4
+}
+.Calculator .basic-buttons button.editions:nth-child(4),.Calculator .basic-buttons button.editions:nth-child(4).pressed{
+    @apply .border-t-0
+}
+.Calculator .basic-buttons button.editions:nth-child(4).pressed{
+    padding-top: 2px;
+}
+.Calculator .basic-buttons button.editions.pressed{
+    @apply .border-l .border-b .border-t-2 .pr-px
+}
+
+// active states
+.Calculator .basic-buttons button:active{
+    color: #000;
+    background: var(--calc-grey-pressed);
+}
+.Calculator .basic-buttons button.darker:active{
+    color: #000;
+    background: var(--calc-grey-darker-pressed);
+}
+.Calculator .basic-buttons button.editions:active{
+    color: var(--calc-orange-text-pressed);
+    background: var(--calc-orange-pressed);
 }

@@ -8,7 +8,7 @@
 	backdrop-filter: blur(20px);
 }
 .backdrop-blur-30{
-	backdrop-filter: blur(30px);
+	backdrop-filter: blur(30px) saturate(1.5);
 }
 .backdrop-blur-40{
 	backdrop-filter: blur(40px);

@@ -2,6 +2,10 @@
 
 }(window);
 
+import Calculator from "app/Calculator";
+import Finder from "app/Finder";
+import Launchpad from "app/Launchpad";
+
 const Observable = function() {
     const _self = this;
     _self.data;
@@ -37,12 +41,16 @@ const view = {
     dockAppsLabels: document.querySelectorAll(".dock figcaption"),
     dockApps: document.querySelectorAll(".dock li"),
     contextMenuItems: document.querySelectorAll(".dock li div.menu p"),
+    openWindows: document.getElementById("open-windows"),
 };
 const model = {
     dockApps: [],
     contextMenuItems: [],
     holdTimer: new Observable(),
     optionsOpened: new Observable(),
+    optionsUpdate: new Observable(),
+    secondRelease: new Observable(),
+    window: new Observable(),
 };
 const layoutController = {
     initial: function () {
@@ -70,8 +78,10 @@ const layoutController = {
 const subscribeController = {
     initial: function () {
         this.dockMenu();
+        this.dockMenuUpdate();
         this.apps(view.dockApps);
         this.contextMenus(view.contextMenuItems);
+        this.window();
     },
     dockMenu: function () {
         model.optionsOpened.subscribe(function (dockAppIndex) {
@@ -91,6 +101,15 @@ const subscribeController = {
         });
         model.optionsOpened.publish(null);
     },
+    dockMenuUpdate: function () {
+        model.optionsUpdate.subscribe(function () {
+            for(let i = 0, ilen = view.dockApps.length;i < ilen;++i){
+                if (view.dockApps[i].classList.contains("active")) {
+
+                }
+            }
+        });
+    },
     apps: function (apps) {
         for(let i = 0, ilen = apps.length;i < ilen;++i){
             let appObservable = new Observable();
@@ -107,10 +126,12 @@ const subscribeController = {
                         }
                         break;
                     case "click":
+                        if(model.optionsOpened.publish() !== null){
+                            model.secondRelease.publish(true);
+                        }
                         model.holdTimer.publish(setTimeout(function () {
                             model.optionsOpened.publish(i);
                         },500));
-                        model.optionsOpened.publish(null);
                         if (!apps[i].classList.contains("click")) {
                             apps[i].classList.add("click");
                         }
@@ -123,20 +144,16 @@ const subscribeController = {
                         if(model.optionsOpened.publish() === null){
                             model.dockApps[i].publish("active");
                         }
+                        if(model.optionsOpened.publish() !== null && model.secondRelease.publish()){
+                            model.optionsOpened.publish(null);
+                            model.secondRelease.publish(false);
+                        }
                         break;
                     case "active":
                         if (i !== 1){
-                            if (!apps[i].classList.contains("active") && model.optionsOpened.publish() !== i) {
-                                const startupTimer = setTimeout(function () {
-                                    if (apps[i].classList.contains("activate")) {
-                                        apps[i].classList.remove("activate");
-                                    }
-                                    if (!apps[i].classList.contains("active")) {
-                                        apps[i].classList.add("active");
-                                    }
-                                    clearTimeout(startupTimer);
-                                }, 1000);
-                                if (!apps[i].classList.contains("activate") && i !== 0) {
+                            if (!apps[i].classList.contains("active") && model.optionsOpened.publish() === null) {
+                                appController.open(apps[i]);
+                                if (!apps[i].classList.contains("activate")) {
                                     apps[i].classList.add("activate");
                                 }
                             }
@@ -164,6 +181,7 @@ const subscribeController = {
         for(let i = 0, ilen = menuItems.length;i < ilen;++i){
             let menuObservable = new Observable();
             menuObservable.subscribe(function (data) {
+                const app = menuItems[i].parentElement.parentElement;
                 switch (data) {
                     case "mouse-over":
                         if(!menuItems[i].classList.contains("hover")){
@@ -176,11 +194,17 @@ const subscribeController = {
                         }
                         break;
                     case "open":
-
-                        // break;
+                        // model.dockApps[i].publish("active");
+                            if (!app.classList.contains("active")) {
+                                appController.open(app);
+                                if (!app.classList.contains("activate")) {
+                                    app.classList.add("activate");
+                                }
+                            }
+                        break;
                     case "show":
-
-                        // break;
+                        appController.show(app);
+                        break;
                     default:
                         console.log("SwitchError in subscribeController.apps");
                         break;
@@ -189,6 +213,12 @@ const subscribeController = {
             model.contextMenuItems.push(menuObservable);
         }
     },
+    window: function () {
+        model.window.subscribe(function (data) {
+            const alreadyOpen = view.openWindows.innerHTML;
+            view.openWindows.innerHTML = alreadyOpen + data;
+        });
+    }
 };
 const listenerController = {
     initial: function () {
@@ -234,6 +264,44 @@ const listenerController = {
             }(i);
         }
     },
+};
+
+const appController = {
+    open: function (app) {
+        const appLink = app.getElementsByClassName("menu")[0].querySelector("p[data-action=open]").dataset.load;
+
+        const htmlRequest = new XMLHttpRequest();
+        htmlRequest.open("GET",location.href + appLink);
+        htmlRequest.onreadystatechange = function(){
+            if(htmlRequest.readyState === 4 && htmlRequest.status === 200){
+                model.window.publish(htmlRequest.responseText);
+
+                model.optionsOpened.publish(null);
+                if (app.classList.contains("activate")) {
+                    app.classList.remove("activate");
+                }
+                if (!app.classList.contains("active")) {
+                    app.classList.add("active");
+                }
+                model.optionsUpdate.publish(true);
+            }
+        };
+        htmlRequest.send();
+    },
+    show:function (app) {
+        const appLink = app.getElementsByClassName("menu")[0].querySelector("p[data-action=show]").dataset.load;
+        const path = app.getElementsByClassName("menu")[0].querySelector("p[data-action=show]").dataset.load;
+
+        const FinderRequest = new XMLHttpRequest();
+        FinderRequest.open("GET",location.href + appLink + "/" + path);
+        FinderRequest.onreadystatechange = function(){
+            if(FinderRequest.readyState === 4 && FinderRequest.status === 200){
+                model.window.publish(FinderRequest.responseText);
+
+            }
+        };
+        FinderRequest.send();
+    }
 };
 
 // eerst aangeroepen functie
