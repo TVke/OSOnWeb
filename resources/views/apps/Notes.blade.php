@@ -5,7 +5,5 @@
         <a href="." class="enlarge"></a>
     </div>
     <div class="mover top-bar"></div>
-    <textarea class="textfield">
-
-    </textarea>
+    <textarea class="textfield"></textarea>
 </div>
