@@ -1,6 +1,6 @@
-!function(window, undefined) {
-
-}(window);
+// !function(window, undefined) {
+//
+// }(window);
 
 const Observable = function() {
     const _self = this;
