@@ -266,6 +266,17 @@ const listenerController = {
                     e.preventDefault();
                     model.optionsOpened.publish(index);
                 });
+                //touch
+                apps[index].children[0].addEventListener("touchstart",function (e) {
+                    e.preventDefault();
+                    model.dockApps[index].publish("click");
+                });
+                apps[index].children[0].addEventListener("touchend",function () {
+                    model.dockApps[index].publish("release");
+                });
+                apps[index].children[0].addEventListener("touchcancel",function () {
+                    model.dockApps[index].publish("release");
+                });
             }(i);
         }
     },
@@ -429,6 +440,29 @@ const windowController = {
                     model.startY[i].publish(e.y);
                 });
                 movers[i].addEventListener("mouseout",function (e) {
+                    model.pressed[i].publish(false);
+                    model.startX[i].publish(e.x);
+                    model.startY[i].publish(e.y);
+                });
+                //touches
+                movers[i].addEventListener("touchstart",function (e) {
+                    model.pressed[i].publish(true);
+                    model.startX[i].publish(e.x);
+                    model.startY[i].publish(e.y);
+                });
+                movers[i].addEventListener("touchmove",function (e) {
+                    e.preventDefault();
+                    if(model.pressed[i].publish()){
+                        model.x[i].publish(e.x);
+                        model.y[i].publish(e.y);
+                    }
+                });
+                movers[i].addEventListener("touchend",function (e) {
+                    model.pressed[i].publish(false);
+                    model.startX[i].publish(e.x);
+                    model.startY[i].publish(e.y);
+                });
+                movers[i].addEventListener("touchcancel",function (e) {
                     model.pressed[i].publish(false);
                     model.startX[i].publish(e.x);
                     model.startY[i].publish(e.y);
