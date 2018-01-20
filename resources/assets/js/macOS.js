@@ -294,6 +294,11 @@ const listenerController = {
                     e.preventDefault();
                     model.contextMenuItems[index].publish(view.contextMenuItems[index].dataset["action"].toLowerCase());
                 });
+                //touch
+                menuItems[index].addEventListener("touchend",function (e) {
+                    e.preventDefault();
+                    model.contextMenuItems[index].publish(view.contextMenuItems[index].dataset["action"].toLowerCase());
+                });
             }(i);
         }
     },
