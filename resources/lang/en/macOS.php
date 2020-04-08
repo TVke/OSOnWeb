@@ -12,39 +12,39 @@ return [
     */
 
     // apps
-    'Finder' => 'Finder',
-	'Launchpad' => 'Launchpad',
-	'Calculator' => 'Calculator',
-	'Notes' => 'Notes',
-	'Settings' => 'Settings',
-	'Reminders' => 'Reminders',
-	'Agenda' => 'Agenda',
-	'Contacts' => 'Contacts',
-	'Stickies' => 'Stickies',
-	'Terminal' => 'Terminal',
-    'Trash' => 'Trash',
+    'Finder'     => 'Finder',
+    'Launchpad'  => 'Launchpad',
+    'Calculator' => 'Calculator',
+    'Notes'      => 'Notes',
+    'Settings'   => 'Settings',
+    'Reminders'  => 'Reminders',
+    'Agenda'     => 'Agenda',
+    'Contacts'   => 'Contacts',
+    'Stickies'   => 'Stickies',
+    'Terminal'   => 'Terminal',
+    'Trash'      => 'Trash',
 
     // menu alts
-    'Spotlight' => 'Spotlight',
-    'Siri' => 'Siri',
+    'Spotlight'     => 'Spotlight',
+    'Siri'          => 'Siri',
     'Notifications' => 'Notifications',
 
     // general
-    'open' => 'Open',
-    'show' => 'Show',
-    'inside' => 'in',
-    'new' => 'New',
-    'quit' => 'Stop',
+    'open'    => 'Open',
+    'show'    => 'Show',
+    'inside'  => 'in',
+    'new'     => 'New',
+    'quit'    => 'Stop',
     'restart' => 'Restart',
     'options' => 'Options',
-    'remove' => 'Remove from Dock',
-    'empty' => 'Empty trash',
+    'remove'  => 'Remove from Dock',
+    'empty'   => 'Empty trash',
 
     // menu
     'archive' => 'archive',
-    'edit' => 'edit',
-    'view' => 'view',
-    'window' => 'window',
-    'help' => 'help',
+    'edit'    => 'edit',
+    'view'    => 'view',
+    'window'  => 'window',
+    'help'    => 'help',
 
 ];

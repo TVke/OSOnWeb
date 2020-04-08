@@ -13,7 +13,7 @@ class FileTypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('file_types')->insert([
-            ['name' => 'application','preview' => '','extension' => 'app',],
+            ['name' => 'application', 'preview' => '', 'extension' => 'app'],
         ]);
     }
 }

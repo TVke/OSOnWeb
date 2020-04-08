@@ -2,8 +2,8 @@
 
 namespace OS\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 use OS\File;
 
 class RouteServiceProvider extends ServiceProvider
@@ -24,7 +24,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::bind('user_slug',function($app_name){
+        Route::bind('user_slug', function ($app_name) {
             return File::where(['dir_id' => 2, 'type_id' => 1, 'name' => $app_name])->firstOrFail();
         });
 
