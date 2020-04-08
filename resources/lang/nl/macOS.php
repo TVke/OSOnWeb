@@ -12,39 +12,39 @@ return [
     */
 
     // apps
-    'Finder' => 'Finder',
-	'Launchpad' => 'Launchpad',
-	'Calculator' => 'Rekenmachine',
-	'Notes' => 'Notities',
-	'Settings' => 'Systeemvoorkeuren',
-	'Reminders' => 'Herinneringen',
-	'Agenda' => 'Agenda',
-	'Contacts' => 'Contacten',
-	'Stickies' => 'Plaknotities',
-	'Terminal' => 'Terminal',
-    'Trash' => 'Prullenmand',
+    'Finder'     => 'Finder',
+    'Launchpad'  => 'Launchpad',
+    'Calculator' => 'Rekenmachine',
+    'Notes'      => 'Notities',
+    'Settings'   => 'Systeemvoorkeuren',
+    'Reminders'  => 'Herinneringen',
+    'Agenda'     => 'Agenda',
+    'Contacts'   => 'Contacten',
+    'Stickies'   => 'Plaknotities',
+    'Terminal'   => 'Terminal',
+    'Trash'      => 'Prullenmand',
 
     // menu alts
-    'Spotlight' => 'Spotlight',
-    'Siri' => 'Siri',
+    'Spotlight'     => 'Spotlight',
+    'Siri'          => 'Siri',
     'Notifications' => 'Berichtgeving',
 
     // general
-    'open' => 'Open',
-    'show' => 'Toon',
-    'inside' => 'in',
-    'new' => 'Nieuw',
-    'quit' => 'Stop',
+    'open'    => 'Open',
+    'show'    => 'Toon',
+    'inside'  => 'in',
+    'new'     => 'Nieuw',
+    'quit'    => 'Stop',
     'restart' => 'Start Opnieuw',
     'options' => 'Opties',
-    'remove' => 'Verwijder uit Dock',
-    'empty' => 'Leeg prullenmand',
+    'remove'  => 'Verwijder uit Dock',
+    'empty'   => 'Leeg prullenmand',
 
     // menu
     'archive' => 'archief',
-    'edit' => 'wijzig',
-    'view' => 'weergave',
-    'window' => 'venster',
-    'help' => 'help',
+    'edit'    => 'wijzig',
+    'view'    => 'weergave',
+    'window'  => 'venster',
+    'help'    => 'help',
 
 ];
