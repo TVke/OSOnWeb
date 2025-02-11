@@ -1,30 +1,15 @@
 {
-  "name": "OS",
-  "version": "1.0.0",
-  "description": "this is a proof of concept school project. I try to prove if I can get a website as close to a real OS",
-  "main": "gulpfile.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TVke/OSOnWeb.git"
-  },
-  "author": "Thomas",
-  "license": "ISC",
-  "homepage": "http://os.local",
-  "devDependencies": {
-    "autoprefixer": "^8.4.1",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "cssnano": "^3.10.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.1",
-    "gulp-imagemin": "^4.1.0",
-    "gulp-postcss": "^7.0.1",
-    "gulp-purgecss": "^0.21.0",
-    "gulp-sass": "^4.0.1",
-    "gulp-uglify": "^3.0.0",
-    "tailwindcss": "^0.5.2"
+  "name": "os-on-web",
+  "version": "0.0.1",
+  "description": "Apple OS on web",
+  "main": "index.html",
+  "scripts": {
+    "dev": "uglifyjs ./index.js -o ./dist/index.js & npx @tailwindcss/cli -i ./index.css -o ./dist/index.css --watch",
+    "prod": "uglifyjs ./index.js -o ./dist/index.js & npx @tailwindcss/cli -i ./index.css -o ./dist/index.css"
   },
   "dependencies": {
-    "npm": "^6.14.6"
+    "@tailwindcss/cli": "^4.0.6",
+    "tailwindcss": "^4.0.6",
+    "uglify-js": "^3.19.3"
   }
 }
