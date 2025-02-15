@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title>OSonWeb</title>
     <link rel="stylesheet" href="./dist/index.css">
+    <link rel="stylesheet" href="./dist/css/macOS.css">
 </head>
 <body class="text-black bg-cover bg-no-repeat h-screen">
 
@@ -15,10 +16,7 @@
     </ul>
     <ul>
         <li>
-            @php
-            setlocale(LC_TIME, app()->getLocale().'_BE');
-            @endphp
-            <a href="." id="clock">{{ \Carbon\Carbon::now()->addHour()->formatLocalized('%a %e %b. %H:%M:%S') }}</a>
+            <a href="." id="clock"></a>
         </li>
         <li><a id="spotlight" href="."><img src="./dist/img/spotlight.png" alt="Spotlight"></a></li>
         <li><a id="siri" href="."><img src="./dist/img/siri.png" alt="Siri"></a></li>
@@ -31,12 +29,11 @@
 <nav class="absolute pin-b w-full flex h-28 z-50">
     <div class="dock">
         <ul>
-            @foreach($apps as $app)
             <li class="active">
             <figure>
-                <figcaption data-name="{{ $app->name }}">{{ __('macOS.'.$app->name) }}</figcaption>
+                <figcaption data-name="{{ $app->name }}">Finder</figcaption>
                 <div class="arrow"></div>
-                <img src="{{ asset($app->preview) }}" alt="{{ __('macOS.'.$app->name) }}">
+                <img src="./dist/img/Finder.png" alt="Finder">
             </figure>
             <div class="menu">
                 @if($app->name !== "Launchpad" && $app->name !== "Finder" )
@@ -93,6 +90,7 @@
     </div>
 </nav>
 <script src="./dist/index.js"></script>
+<script src="./dist/js/macOS.js"></script>
 </body>
 </html>
 
