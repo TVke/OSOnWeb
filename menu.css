@@ -1,36 +1,36 @@
 .top-menu{
     background: rgba(250,250,250,.7);
     border-color: rgba(0, 0, 0, 0.27);
-    @apply .absolute .pin-x .pin-t .pl-2.5 .pr-4 .backdrop-blur-30 .h-5 .shadow-lg .border-b .flex .justify-between .text-sm .z-30
+    @apply absolute inset-x-0 top-0 pl-2.5 pr-4 backdrop-blur-[30px] backdrop-saturate-[1.5] h-5 shadow-lg border-b flex justify-between text-sm z-30
 }
 .top-menu ul{
-    @apply .list-reset .flex
+    @apply flex
 }
 .top-menu ul:first-child{
-    @apply .justify-start
+    @apply justify-start
 }
 .top-menu ul:last-child{
-    @apply .justify-end
+    @apply justify-end
 }
 .top-menu ul li{
-    @apply .flex
+    @apply flex
 }
 .top-menu ul li a{
-    @apply .flex .px-2.5 .cursor-default .text-black .no-underline .items-center
+    @apply flex px-2.5 cursor-default text-black no-underline items-center
 }
 .top-menu ul li a img{
-    @apply .block
+    @apply block
     }
 .top-menu ul:first-child li:first-child a{
-    @apply .text-lg
+    @apply text-lg
 }
 .top-menu ul:first-child li:nth-child(2) a{
-    @apply .font-semibold
+    @apply font-semibold
 }
 
 #spotlight{
     padding-left: 0.6875rem;
-    @apply .pr-2.5
+    @apply pr-2.5
 }
 #spotlight img{
     height: 14.5px;
@@ -52,8 +52,8 @@
 }
 
 .top-menu a:hover{
-    @apply .bg-blue
+    @apply bg-blue-500
 }
 .top-menu a:hover{
-    @apply .text-white
+    @apply text-white
 }

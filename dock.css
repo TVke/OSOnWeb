@@ -1,64 +1,76 @@
 @keyframes load {
-    from{transform: translateY(0);}
-    to{transform: translateY(-20%);}
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-20%);
+    }
 }
 
-.dock{
+.dock {
     transition: all .5s ease;
     padding: 5px 8px 0;
-    @apply .flex .mx-auto .relative
-}
-.dock ul{
-    @apply .flex .mx-auto .list-reset
+    @apply flex mx-auto relative
 }
 
-.dock-hide{
-	transform: translateY(100px);
+.dock ul {
+    @apply flex mx-auto
 }
 
-.dock::after{
-	content: "";
-	border-color: rgba(0, 0, 0, 0.2);
-	box-shadow: 0 0 70px rgba(0, 0, 0, 0.14);
-    background: rgba(240,240,240,0.2);
-	@apply .rounded-t .absolute .pin .border .border-b-0 .backdrop-blur-30 .h-28
+.dock-hide {
+    transform: translateY(100px);
 }
 
-.dock li{
-    @apply .z-10 .relative
-}
-.dock .vr{
-    background: rgba(50,50,50,0.4);
-    @apply .relative .z-10 .block .w-px .mx-4 .my-2
+.dock::after {
+    content: "";
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 70px rgba(0, 0, 0, 0.14);
+    background: rgba(240, 240, 240, 0.2);
+    @apply rounded-t absolute inset-0 border border-b-0  backdrop-blur-[30px] backdrop-saturate-[1.5] h-28
 }
 
-.dock figure{
-    @apply .relative
+.dock li {
+    @apply z-10 relative
 }
-.dock figcaption{
+
+.dock .vr {
+    background: rgba(50, 50, 50, 0.4);
+    @apply relative z-10 block w-px mx-4 my-2
+}
+
+.dock figure {
+    @apply relative
+}
+
+.dock figcaption {
     opacity: 0;
     top: -41px;
-    @apply .block .absolute .py-1 .px-3 .rounded .mx-auto .text-center .bg-grey-lightest .text-black .shadow .font-hairline .text-xs .pointer-events-none
-}
-.dock figure img{
-    @apply .block .w-24
-}
-.dock ul:first-child li.activate{
-    animation: load .4s infinite alternate cubic-bezier(.2,.5,.5,.5);
-}
-.dock ul:first-child li.active{
-    transform: translateY(0);
-}
-.dock li.click img,.dock li.options img{
-    filter: brightness(0.5);
-}
-.dock li::after{
-    content: "";
-    top: 5px;
-    @apply .rounded .block .w-1 .h-1 .mx-auto .relative .z-10 .bg-grey-darkest .shadow-inner-sm .opacity-0
+    @apply block absolute py-1 px-3 rounded mx-auto text-center bg-[#f0f0f0] text-black shadow font-thin text-xs pointer-events-none
 }
 
-.dock li,.dock li::after,.dock figcaption,.dock .menu,.arrow{
+.dock figure img {
+    @apply block w-24
+}
+
+.dock ul:first-child li.activate {
+    animation: load .4s infinite alternate cubic-bezier(.2, .5, .5, .5);
+}
+
+.dock ul:first-child li.active {
+    transform: translateY(0);
+}
+
+.dock li.click img, .dock li.options img {
+    filter: brightness(0.5);
+}
+
+.dock li::after {
+    content: "";
+    top: 5px;
+    @apply rounded block w-1 h-1 mx-auto relative z-10 bg-[#333] inset-shadow-sm opacity-0
+}
+
+.dock li, .dock li::after, .dock figcaption, .dock .menu, .arrow {
     transition: all .3s ease-out;
 }
 
@@ -66,30 +78,35 @@
 .dock li.hover figcaption,
 .dock li.hover figure .arrow,
 .dock li.options .menu,
-.dock li.options .arrow{
-    @apply .opacity-100
-}
-.dock ul:first-child li:nth-child(2).active::after{
-    @apply .opacity-0
+.dock li.options .arrow {
+    @apply opacity-100
 }
 
-.dock .menu{
+.dock ul:first-child li:nth-child(2).active::after {
+    @apply opacity-0
+}
+
+.dock .menu {
     bottom: 127px;
     left: 30px;
-    @apply .block .absolute .rounded .font-light .text-xs .bg-grey-lightest .pt-px .shadow-lg .opacity-0 .pointer-events-none
+    @apply block absolute rounded font-light text-xs bg-[#f0f0f0] pt-px shadow-lg opacity-0 pointer-events-none
 }
-.dock li.options .menu{
-    @apply .pointer-events-auto
+
+.dock li.options .menu {
+    @apply../imgpointer-events-auto
 }
-.dock .menu p{
+
+.dock .menu p {
     cursor: default;
     white-space: nowrap;
-    @apply .block .py-0.5 .px-4 .my-0.75
+    @apply block py-0.5 px-4 my-0.75
 }
-.dock .menu p.sub-menu{
+
+.dock .menu p.sub-menu {
     display: flex;
 }
-.dock .menu p.sub-menu::after{
+
+.dock .menu p.sub-menu::after {
     content: "";
     display: block;
     height: 0;
@@ -98,31 +115,35 @@
     border-bottom: 4px solid transparent;
     border-left: 9px solid #434343;
     margin-top: 2px;
-    @apply .ml-3 .-mr-2
+    @apply ml-3 -mr-2
 }
-.dock .menu p.hover{
-    @apply .bg-blue .text-white
+
+.dock .menu p.hover {
+    @apply bg-blue-500 text-white
 }
-.dock .menu p.hover.sub-menu::after{
+
+.dock .menu p.hover.sub-menu::after {
     border-left-color: white;
 }
-.dock .menu p.disabled{
-    @apply .text-grey-disabled
-}
-.dock .menu p.disabled.hover{
-    @apply .bg-transparent .text-grey-disabled
+
+.dock .menu p.disabled {
+    @apply text-[#BDBDBD]
 }
 
-.dock .menu hr{
+.dock .menu p.disabled.hover {
+    @apply bg-transparent text-[#BDBDBD]
+}
+
+.dock .menu hr {
     height: 2px;
     margin: 2px 0;
-    @apply .block .bg-grey-light
+    @apply block bg-[#E6E6E6]
 }
 
-.arrow{
+.arrow {
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
-    border-top: 7px solid rgb(240,240,240);
+    border-top: 7px solid rgb(240, 240, 240);
     top: -20px;
-    @apply .block .w-0 .h-0 .absolute .mx-auto .pin-x .opacity-0
+    @apply block w-0 h-0 absolute mx-auto inset-x-0 opacity-0
 }
